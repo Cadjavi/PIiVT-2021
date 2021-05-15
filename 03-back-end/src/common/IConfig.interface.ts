@@ -10,5 +10,14 @@ export default interface iConfig {
             index: boolean,
             maxAge: number,
         }
+    },
+    databse: {
+        host: string,
+        port: number,
+        user: string,
+        password: string,
+        database: string,
+        charset: string,
+        timezone: string,
     }
 }
