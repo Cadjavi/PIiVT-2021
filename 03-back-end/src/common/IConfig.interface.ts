@@ -1,6 +1,6 @@
-export default interface iConfig {
+export default interface IConfig {
     server: {
-        port:  number,
+        port: number,
         static: {
             path: string,
             route: string,

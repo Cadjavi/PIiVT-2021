@@ -24,7 +24,7 @@ class CategoryService {
     item.categoryId = +row?.category_id;
     item.name = row?.name;
     item.imagePath = row?.image_path;
-    item.parentCategory = row?.parent__category_id;
+    item.parentCategoryId = row?.parent__category_id;
 
     if (options.loadParent && item.parentCategoryId !== null) {
       const data = await this.getById(item.parentCategoryId);
@@ -146,7 +146,13 @@ class CategoryService {
   ): Promise<CategoryModel | IErrorResponse> {
     return new Promise<CategoryModel | IErrorResponse>(async (resolve) => {
       const sql =
-        "INSERT category SET name = ?, image_path = ?, parent__category_id = ?;";
+      `
+      INSERT
+          category
+      SET
+          name = ?,
+          image_path = ?,
+          parent__category_id = ?;`;
       this.db
         .execute(sql, [
           data.name,

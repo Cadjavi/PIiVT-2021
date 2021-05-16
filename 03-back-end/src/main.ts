@@ -1,7 +1,6 @@
 import * as express from "express";
 import * as cors from "cors";
 import Config from "./config/dev";
-import { config } from "process";
 import CategoryRouter from "./components/category/router";
 import * as mysql2 from "mysql2/promise";
 import IApplicationResourses from "./common/IApplicationResourses.interface";
@@ -26,7 +25,7 @@ async function main() {
     }),
   };
 
-  resourses.databaseConnection.connect;
+  resourses.databaseConnection.connect();
 
   application.use(
     Config.server.static.route,
@@ -36,7 +35,7 @@ async function main() {
       maxAge: Config.server.static.maxAge,
       etag: Config.server.static.etag,
       dotfiles: Config.server.static.dotfiles,
-    })
+    }),
   );
 
   Router.setupRoutes(application, resourses, [new CategoryRouter()]);

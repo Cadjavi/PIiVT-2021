@@ -15,6 +15,7 @@ export default class CategoryRouter implements IRouter {
     const categoryController: CategoryController = new CategoryController(
       categoryService
     );
+
     application.get(
       "/category",
       categoryController.getAll.bind(categoryController)

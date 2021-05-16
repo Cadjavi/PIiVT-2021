@@ -1,7 +1,6 @@
 import Ajv from "ajv";
 
-
-interface IAddCategory{
+interface IAddCategory {
     name: string;
     imagePath: string;
     parentCategoryId: number | null;
@@ -9,30 +8,30 @@ interface IAddCategory{
 
 const ajv = new Ajv();
 
-const  IAddCategoryValidator = ajv.compile({
+const IAddCategoryValidator = ajv.compile({
     type: "object",
     properties: {
         name: {
             type: "string",
-            minlenght: 2,
-            maxlenght: 64,
+            minLength: 2,
+            maxLength: 128,
         },
         imagePath: {
             type: "string",
-            maxlenght: 255,
+            maxLength: 255,
             pattern: "\.(png|jpg)$",
         },
-        parentCategory: {
-            type: [ "integer", "null;" ],
+        parentCategoryId: {
+            type: [ "integer", "null" ],
             minimum: 1,
         },
     },
     required: [
-        "name" ,
+        "name",
         "imagePath",
     ],
     additionalProperties: false,
 });
 
 export { IAddCategory };
-export { IAddCategoryValidator }
+export { IAddCategoryValidator };
