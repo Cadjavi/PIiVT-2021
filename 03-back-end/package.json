@@ -6,12 +6,13 @@
   "scripts": {
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
-    "start": "npm run build && node ./dist/main.js",
-    "start:dev": "ts-node-dev --respawn -- src/main.ts"
+    "start": "npm run build && node  --trace-warningss ./dist/main.js",
+    "start:dev": "ts-node-dev --trace-warnings --respawn -- src/main.ts"
   },
   "author": "Aleksa Cadjo",
   "license": "ISC",
   "dependencies": {
+    "ajv": "^8.4.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mysql2": "^2.2.5"
