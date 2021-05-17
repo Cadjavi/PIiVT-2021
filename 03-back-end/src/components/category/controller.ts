@@ -13,7 +13,9 @@ class CategoryController {
   }
 
   async getAll(req: Request, res: Response, next: NextFunction) {
-    const categories = await this.categoryService.getAll();
+    const categories = await this.categoryService.getAll({
+      loadSubcategories: true,
+    });
 
     res.send(categories);
   }
@@ -29,7 +31,12 @@ class CategoryController {
     }
 
     const data: CategoryModel | null | IErrorResponse =
-      await this.categoryService.getById(categoryId);
+      await this.categoryService.getById(
+        categoryId,
+        {
+          loadSubcategories: true,
+        }
+        );
 
     if (data === null) {
       res.sendStatus(404);
@@ -52,10 +59,7 @@ class CategoryController {
       return;
     }
 
-
     const result = await this.categoryService.add(data as IAddCategory);
-
-    
 
     res.send(result);
   }
@@ -65,16 +69,12 @@ class CategoryController {
 
     const categoryId: number = +id;
 
-    
-
     if (categoryId <= 0) {
       res.status(400).send("Invalid ID number.");
       return;
     }
 
     const data = req.body;
-
-    
 
     if (!IEditCategoryValidator(data)) {
       res.status(400).send(IEditCategoryValidator.errors);
@@ -84,8 +84,10 @@ class CategoryController {
     const result = await this.categoryService.edit(
       categoryId,
       data as IEditCategory,
+      {
+        loadSubcategories: true,
+      }
     );
-
 
     if (result === null) {
       res.sendStatus(404);
