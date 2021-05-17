@@ -28,5 +28,9 @@ export default class CategoryRouter implements IRouter {
       "/category",
       categoryController.add.bind(categoryController)
     );
+    application.put(
+      "/category/:id",
+      categoryController.edit.bind(categoryController)
+    )
   }
 }

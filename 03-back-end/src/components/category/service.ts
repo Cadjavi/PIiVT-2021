@@ -4,6 +4,7 @@ import IErrorResponse from "../../common/IErrorRrsponse.interface";
 import { IAddCategory } from "./dto/AddCategory";
 import { resolve } from "path/posix";
 import BaseService from "../../services/BaseService";
+import { IEditCategory } from "./dto/EditCategory";
 
 class CategoryService extends BaseService<CategoryModel> {
   protected async adaptModel(
@@ -15,7 +16,7 @@ class CategoryService extends BaseService<CategoryModel> {
   ): Promise<CategoryModel> {
     const item: CategoryModel = new CategoryModel();
 
-    item.categoryId = +(row?.category_id);
+    item.categoryId = +row?.category_id;
     item.name = row?.name;
     item.imagePath = row?.image_path;
     item.parentCategoryId = row?.parent__category_id;
@@ -92,7 +93,7 @@ class CategoryService extends BaseService<CategoryModel> {
           const newCategoryId: number = +insertinfo?.insertId;
           resolve(await this.getById(newCategoryId));
         })
-        .catch(error => {
+        .catch((error) => {
           resolve({
             errorCode: error?.errno,
             errorMessage: error?.sqlMessage,
@@ -100,6 +101,45 @@ class CategoryService extends BaseService<CategoryModel> {
         });
     });
   }
+
+  public async edit(
+    categoryId: number,
+    data: IEditCategory,
+): Promise<CategoryModel|IErrorResponse|null> {
+    const result = await this.getById(categoryId);
+
+    
+
+    if (result === null) {
+        return null;
+    }
+
+    if (!(result instanceof CategoryModel)) {
+        return result;
+    }
+
+    return new Promise<CategoryModel|IErrorResponse>(async resolve => {
+        const sql = `
+            UPDATE
+                category
+            SET
+                name = ?,
+                image_path = ?
+            WHERE
+                category_id = ?;`;
+
+        this.db.execute(sql, [ data.name, data.imagePath, categoryId ])
+            .then(async result => {
+                resolve(await this.getById(categoryId));
+            })
+            .catch(error => {
+                resolve({
+                    errorCode: error?.errno,
+                    errorMessage: error?.sqlMessage
+                });
+            });
+    });
+}
 }
 
 export default CategoryService;
