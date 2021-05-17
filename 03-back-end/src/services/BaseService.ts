@@ -3,6 +3,7 @@ import * as mysql2 from "mysql2/promise";
 import IModelAdapterOptions from "../common/IModelAdapterOptions.interface";
 import IErrorResponse from "../common/IErrorRrsponse.interface";
 
+
 export default abstract class BaseService<ReturnModel extends IModel> {
   private dbConnection: mysql2.Connection;
 
@@ -19,9 +20,12 @@ export default abstract class BaseService<ReturnModel extends IModel> {
     options: Partial<IModelAdapterOptions>
   ): Promise<ReturnModel>;
 
-  protected async getAllFromTable<AdapterOptions extends IModelAdapterOptions>(
+  protected async getAllFromTable(
     tableName: string,
-    options: Partial<AdapterOptions> = {}
+    options: Partial<IModelAdapterOptions> = {
+      loadChildren: false,
+      loadParent: false,
+    }
   ): Promise<ReturnModel[] | IErrorResponse> {
     return new Promise<ReturnModel[] | IErrorResponse>(async (resolve) => {
       const sql: string = `SELECT * FROM ${tableName};`;
@@ -48,10 +52,13 @@ export default abstract class BaseService<ReturnModel extends IModel> {
     });
   }
 
-  protected async getByIdFromTable<AdapterOptions extends IModelAdapterOptions>(
+  protected async getByIdFromTable(
     tableName: string,
     id: number,
-    options: Partial<AdapterOptions> = {}
+    options: Partial<IModelAdapterOptions> = {
+      loadChildren: true,
+      loadParent: true,
+    }
   ): Promise<ReturnModel | null | IErrorResponse> {
     return new Promise<ReturnModel | null | IErrorResponse>(async (resolve) => {
       const sql: string = `SELECT * FROM ${tableName} WHERE ${tableName}_id = ?;`;
@@ -81,13 +88,14 @@ export default abstract class BaseService<ReturnModel extends IModel> {
     });
   }
 
-  protected async getAllByFieldNameFromTable<
-    AdapterOptions extends IModelAdapterOptions
-  >(
+  protected async getAllByFieldNameFromTable(
     tableName: string,
     fieldName: string,
     fieldValue: any,
-    options: Partial<AdapterOptions> = {}
+    options: Partial<IModelAdapterOptions> = {
+      loadChildren: false,
+      loadParent: false,
+    }
   ): Promise<ReturnModel[] | IErrorResponse> {
     return new Promise<ReturnModel[] | IErrorResponse>(async (resolve) => {
       let sql = `SELECT * FROM ${tableName} WHERE ${fieldName} = ?;`;

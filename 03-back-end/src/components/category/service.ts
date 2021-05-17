@@ -15,7 +15,7 @@ class CategoryService extends BaseService<CategoryModel> {
   ): Promise<CategoryModel> {
     const item: CategoryModel = new CategoryModel();
 
-    item.categoryId = +row?.category_id;
+    item.categoryId = +(row?.category_id);
     item.name = row?.name;
     item.imagePath = row?.image_path;
     item.parentCategoryId = row?.parent__category_id;
@@ -92,7 +92,7 @@ class CategoryService extends BaseService<CategoryModel> {
           const newCategoryId: number = +insertinfo?.insertId;
           resolve(await this.getById(newCategoryId));
         })
-        .catch((error) => {
+        .catch(error => {
           resolve({
             errorCode: error?.errno,
             errorMessage: error?.sqlMessage,
