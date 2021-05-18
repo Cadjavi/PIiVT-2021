@@ -31,6 +31,9 @@ export default class CategoryRouter implements IRouter {
     application.put(
       "/category/:id",
       categoryController.edit.bind(categoryController)
-    )
+    );
+    application.delete("/category/:id",
+      categoryController.deleteById.bind(categoryController)
+    );
   }
 }
