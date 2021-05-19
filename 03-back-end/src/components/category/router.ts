@@ -9,11 +9,9 @@ export default class CategoryRouter implements IRouter {
     application: express.Application,
     resourses: IApplicationResourses
   ) {
-    const categoryService: CategoryService = new CategoryService(
-      resourses.databaseConnection
-    );
+    
     const categoryController: CategoryController = new CategoryController(
-      categoryService
+      resourses
     );
 
     application.get(

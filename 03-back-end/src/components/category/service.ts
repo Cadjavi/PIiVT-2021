@@ -2,14 +2,18 @@ import CategoryModel from "./model";
 import IModelAdapterOptions from "../../common/IModelAdapterOptions.interface";
 import IErrorResponse from "../../common/IErrorRrsponse.interface";
 import { IAddCategory } from "./dto/AddCategory";
-import BaseService from "../../services/BaseService";
+import BaseService from "../../common/BaseService";
 import { IEditCategory } from "./dto/EditCategory";
 
 class CategoryModelAdapterOptions implements IModelAdapterOptions{
   loadParentCategory: boolean = false;
   loadSubcategories: boolean = false;
+  loadFeatures: boolean = false;
 }
 class CategoryService extends BaseService<CategoryModel> {
+
+  
+
   protected async adaptModel(
     row: any,
     options: Partial<CategoryModelAdapterOptions> = { }
@@ -39,6 +43,10 @@ class CategoryService extends BaseService<CategoryModel> {
 
       if (Array.isArray(data)) {
         item.subcategories = data;
+      }
+
+      if(options.loadFeatures){
+        item.features = await this.services.featureService.getAllByCategoryId(item.categoryId);
       }
     }
 

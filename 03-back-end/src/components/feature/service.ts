@@ -1,26 +1,16 @@
 import IModelAdapterOptionsInterface from "../../common/IModelAdapterOptions.interface";
-import BaseService from "../../services/BaseService";
+import BaseService from "../../common/BaseService";
 import FeatureModel from "./model";
-import * as mysql2 from "mysql2/promise";
-import CategoryService from "../category/service";
-import CategoryModel from "../../../dist/components/category/model";
-import IErrorResponse from "../../../dist/common/IErrorRrsponse.interface";
 import { IAddFeature } from "./dto/AddFeature";
 import { IEditFeature } from "./dto/EditFeature";
+import IErrorResponse from "../../common/IErrorRrsponse.interface";
+import CategoryModel from "../category/model";
 
 class FeatureModelApdaterOptions implements IModelAdapterOptionsInterface {
   loadCategory: boolean = false;
 }
 
 class FeatureService extends BaseService<FeatureModel> {
-  private categoryService: CategoryService;
-
-  constructor(db: mysql2.Connection) {
-    super(db);
-
-    this.categoryService = new CategoryService(this.db);
-  }
-
   protected async adaptModel(
     data: any,
     options: Partial<FeatureModelApdaterOptions>
@@ -32,7 +22,7 @@ class FeatureService extends BaseService<FeatureModel> {
     item.categoryId = +data?.category_id;
 
     if (options.loadCategory && item.categoryId) {
-      const result = await this.categoryService.getById(item.categoryId);
+      const result = await this.services.categoryService.getById(item.categoryId);
 
       item.category = result as CategoryModel;
     }
@@ -52,7 +42,7 @@ class FeatureService extends BaseService<FeatureModel> {
   ): Promise<FeatureModel[]> {
     const allFeatures: FeatureModel[] = [];
 
-    const firstParent: CategoryModel = (await this.categoryService.getById(
+    const firstParent: CategoryModel = (await this.services.categoryService.getById(
       categoryId
     )) as CategoryModel;
     let currnetPatent: CategoryModel = firstParent;
@@ -65,7 +55,7 @@ class FeatureService extends BaseService<FeatureModel> {
           currnetPatent.categoryId
         )) as FeatureModel[])
       );
-      currnetPatent = await this.categoryService.getById(
+      currnetPatent = await this.services.categoryService.getById(
         currnetPatent.parentCategoryId
       )as CategoryModel | null;
 

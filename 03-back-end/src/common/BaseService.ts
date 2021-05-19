@@ -1,19 +1,25 @@
-import IModel from "../common/IModel.interface";
+import IModel from "./IModel.interface";
 import * as mysql2 from "mysql2/promise";
-import IModelAdapterOptions from "../common/IModelAdapterOptions.interface";
-import IErrorResponse from "../common/IErrorRrsponse.interface";
+import IModelAdapterOptions from "./IModelAdapterOptions.interface";
+import IErrorResponse from "./IErrorRrsponse.interface";
+import IApplicationResources from './IApplicationResourses.interface';
+import IServices from './IServices.interface';
 
 
 export default abstract class BaseService<ReturnModel extends IModel> {
-  private dbConnection: mysql2.Connection;
+  private resourses: IApplicationResources;
 
-  constructor(db: mysql2.Connection) {
-    this.dbConnection = db;
+  constructor(resources: IApplicationResources) {
+    this.resourses = resources;
   }
 
   protected get db(): mysql2.Connection {
-    return this.dbConnection;
+    return this.resourses.databaseConnection;
   }
+
+  protected get services(): IServices{
+    return this.resourses.services
+  } 
 
   protected abstract adaptModel(
     data: any,

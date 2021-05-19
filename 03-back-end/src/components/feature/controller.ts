@@ -1,16 +1,12 @@
 import { Request, Response, NextFunction } from "express";
+import BaseController from "../../common/BaseController";
 import { IAddFeatureValidator, IAddFeature } from "./dto/AddFeature";
 import { IEditFeatureValidator, IEditFeature } from "./dto/EditFeature";
 import FeatureModel from "./model";
 import FeatureService from "./service";
 
-class FeatureController {
-  private featureService: FeatureService;
-
-  constructor(featureService: FeatureService) {
-    this.featureService = featureService;
-  }
-
+class FeatureController extends BaseController{
+  
   public async getById(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params.id;
 
@@ -20,7 +16,7 @@ class FeatureController {
       res.sendStatus(400);
       return;
     }
-    const result = await this.featureService.getById(featureId, {
+    const result = await this.services.featureService.getById(featureId, {
       loadCategory: true,
     });
 
@@ -44,7 +40,7 @@ class FeatureController {
   ) {
     const categoryId: number = +req.params.cid;
 
-    res.send(await this.featureService.getAllByCategoryId(categoryId));
+    res.send(await this.services.featureService.getAllByCategoryId(categoryId));
   }
 
   public async add(req: Request, res: Response) {
@@ -53,7 +49,7 @@ class FeatureController {
       return;
     }
 
-    res.send(await this.featureService.add(req.body as IAddFeature));
+    res.send(await this.services.featureService.add(req.body as IAddFeature));
   }
 
   public async edit(req: Request, res: Response) {
@@ -69,7 +65,7 @@ class FeatureController {
       return;
     }
 
-    const result = await this.featureService.getById(featureId);
+    const result = await this.services.featureService.getById(featureId);
 
     if (result === null) {
       res.sendStatus(404);
@@ -82,7 +78,7 @@ class FeatureController {
     }
 
     res.send(
-      await this.featureService.edit(featureId, req.body as IEditFeature, {
+      await this.services.featureService.edit(featureId, req.body as IEditFeature, {
         loadCategory: true,
       })
     );
