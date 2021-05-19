@@ -11,11 +11,9 @@ export default class FeatureRouter implements IRouter {
     application: express.Application,
     resourses: IApplicationResourses
   ) {
-    const featureService: FeatureService = new FeatureService(
-      resourses.databaseConnection
-    );
+    
     const featureController: FeatureController = new FeatureController(
-      featureService
+      resourses
     );
 
     application.get(
