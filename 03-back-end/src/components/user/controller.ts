@@ -141,10 +141,11 @@ export default class UserController extends BaseController {
       return res.status(400).send(result);
     }
 
-    const mailResult = await this.sendRegistrationEmail(result);
+    /*const mailResult = await this.sendRegistrationEmail(result);
 
     if (mailResult.errorCode !== 0) {
     }
+    */
 
     res.send(result);
   }
