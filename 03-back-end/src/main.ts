@@ -11,25 +11,30 @@ import FeatureService from "./components/feature/service";
 import ArticleService from "./components/article/service";
 import ArticleRouter from "./components/article/router";
 import * as fileUpload from "express-fileupload";
+import AdministratorService from "./components/admin/service";
+import AdministratorRouter from "./components/admin/router";
 
 async function main() {
   const application: express.Application = express();
 
   application.use(cors());
-  application.use(express.json());application.use(fileUpload({
-    limits: {
+  application.use(express.json());
+  application.use(
+    fileUpload({
+      limits: {
         fileSize: Config.fileUpload.maxSize,
         files: Config.fileUpload.maxFiles,
-    },
-    useTempFiles: true,
-    tempFileDir: Config.fileUpload.temporaryDirectory,
-    uploadTimeout: Config.fileUpload.timeout,
-    safeFileNames: true,
-    preserveExtension: true,
-    createParentPath: true,
-    abortOnLimit: true,
-}));
-  
+      },
+      useTempFiles: true,
+      tempFileDir: Config.fileUpload.temporaryDirectory,
+      uploadTimeout: Config.fileUpload.timeout,
+      safeFileNames: true,
+      preserveExtension: true,
+      createParentPath: true,
+      abortOnLimit: true,
+    })
+  );
+
   const resourses: IApplicationResourses = {
     databaseConnection: await mysql2.createConnection({
       host: Config.databse.host,
@@ -47,9 +52,10 @@ async function main() {
 
   resourses.services = {
     categoryService: new CategoryService(resourses),
-    featureService:  new FeatureService(resourses),
+    featureService: new FeatureService(resourses),
     articleService: new ArticleService(resourses),
-};
+    administratorService: new AdministratorService(resourses),
+  };
 
   application.use(
     Config.server.static.route,
@@ -59,14 +65,15 @@ async function main() {
       maxAge: Config.server.static.maxAge,
       etag: Config.server.static.etag,
       dotfiles: Config.server.static.dotfiles,
-    }),
+    })
   );
 
   Router.setupRoutes(application, resourses, [
     new CategoryRouter(),
     new FeatureRouter(),
     new ArticleRouter(),
-    ]);
+    new AdministratorRouter(),
+  ]);
 
   application.use((req, res) => {
     res.sendStatus(404);
