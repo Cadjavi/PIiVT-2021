@@ -22,5 +22,9 @@ export default class ArticleRouter implements IRouter {
       "/article/:id",
       articleController.edit.bind(articleController)
     );
+    application.delete(
+      "/article/:id",
+      articleController.delete.bind(articleController)
+    );
   }
 }
