@@ -56,6 +56,15 @@ const Config: iConfig = {
       ],
     },
   },
+  mail: {
+    hostname: process.env?.MAIL_HOST,
+    port: +(process.env?.MAIL_PORT),
+    secure: process.env?.MAIL_SECURE === "true",
+    username: process.env?.MAIL_USERNAME,
+    password: process.env?.MAIL_PASSWORD,
+    fromEmail: process.env?.MAIL_FROM,
+    debug: true,
+},
 };
 
 export default Config;

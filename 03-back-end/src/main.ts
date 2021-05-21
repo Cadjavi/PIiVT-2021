@@ -13,6 +13,8 @@ import ArticleRouter from "./components/article/router";
 import * as fileUpload from "express-fileupload";
 import AdministratorService from "./components/admin/service";
 import AdministratorRouter from "./components/admin/router";
+import UserRouter from './components/user/router';
+import UserService from './components/user/service';
 
 async function main() {
   const application: express.Application = express();
@@ -55,6 +57,7 @@ async function main() {
     featureService: new FeatureService(resourses),
     articleService: new ArticleService(resourses),
     administratorService: new AdministratorService(resourses),
+    userService: new UserService(resourses),
   };
 
   application.use(
@@ -73,6 +76,7 @@ async function main() {
     new FeatureRouter(),
     new ArticleRouter(),
     new AdministratorRouter(),
+    new UserRouter(),
   ]);
 
   application.use((req, res) => {
