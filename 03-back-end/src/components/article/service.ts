@@ -3,6 +3,7 @@ import IErrorResponse from "../../common/IErrorRrsponse.interface";
 import IModelAdapterOptionsInterface from "../../common/IModelAdapterOptions.interface";
 import CategoryModel from "../category/model";
 import { IAddArticle, IUploadedPhoto } from "./dto/IAddArticle";
+import { IEditArticle } from "./dto/IEditArticles";
 import ArticleModel, {
   ArticleFeatureValue,
   ArticlePhoto,
@@ -161,8 +162,9 @@ class ArticleService extends BaseService<ArticleModel> {
   ): Promise<ArticleModel | IErrorResponse> {
     return new Promise<ArticleModel | IErrorResponse>((resolve) => {
       this.db.beginTransaction().then(() => {
-        this.db.execute(
-          `
+        this.db
+          .execute(
+            `
           INSERT article
           SET
             title       = ?,
@@ -172,75 +174,246 @@ class ArticleService extends BaseService<ArticleModel> {
             is_promoted = ?,
             category_id = ?;
             `,
-          [
-            data.title,
-            data.excerpt,
-            data.description,
-            data.isActive ? 1 : 0,
-            data.isPromoted ? 1 : 0,
-            data.categoryId,
-          ]
-        ).then(async (res: any) => {
-          const newArticleId: number = +res[0]?.insertId;
+            [
+              data.title,
+              data.excerpt,
+              data.description,
+              data.isActive ? 1 : 0,
+              data.isPromoted ? 1 : 0,
+              data.categoryId,
+            ]
+          )
+          .then(async (res: any) => {
+            const newArticleId: number = +res[0]?.insertId;
 
-          const promises = [];
+            const promises = [];
 
-          promises.push(
-            this.db.execute(
-              `INSERT article_price SET price = ?, article_id = ?;`,
-              [data.price, newArticleId]
-            )
-          );
-
-          for (const featureValue of data.features) {
             promises.push(
               this.db.execute(
-                `INSERT article_feature
+                `INSERT article_price SET price = ?, article_id = ?;`,
+                [data.price, newArticleId]
+              )
+            );
+
+            for (const featureValue of data.features) {
+              promises.push(
+                this.db.execute(
+                  `INSERT article_feature
                                SET article_id = ?, feature_id = ?, value = ?;`,
-                [newArticleId, featureValue.featureId, featureValue.value]
-              )
-            );
-          }
-
-          for (const uploadedPhoto of uploadedPhotos) {
-            promises.push(
-              this.db.execute(
-                `INSERT photo SET article_id = ?, image_path = ?;`,
-                [newArticleId, uploadedPhoto.imagePath]
-              )
-            );
-          }
-
-          Promise.all(promises)
-            .then(async () => {
-              await this.db.commit();
-
-              resolve(
-                await this.services.articleService.getById(newArticleId, {
-                  loadCategory: true,
-                  loadFeatures: true,
-                  loadPhotos: true,
-                })
+                  [newArticleId, featureValue.featureId, featureValue.value]
+                )
               );
-            })
-            .catch(async (error) => {
-              await this.db.rollback();
+            }
 
-              resolve({
-                errorCode: error?.errno,
-                errorMessage: error?.sqlMessage,
+            for (const uploadedPhoto of uploadedPhotos) {
+              promises.push(
+                this.db.execute(
+                  `INSERT photo SET article_id = ?, image_path = ?;`,
+                  [newArticleId, uploadedPhoto.imagePath]
+                )
+              );
+            }
+
+            Promise.all(promises)
+              .then(async () => {
+                await this.db.commit();
+
+                resolve(
+                  await this.services.articleService.getById(newArticleId, {
+                    loadCategory: true,
+                    loadFeatures: true,
+                    loadPhotos: true,
+                  })
+                );
+              })
+              .catch(async (error) => {
+                await this.db.rollback();
+
+                resolve({
+                  errorCode: error?.errno,
+                  errorMessage: error?.sqlMessage,
+                });
               });
-            });
-        }).catch(async (error) => {
-          await this.db.rollback();
+          })
+          .catch(async (error) => {
+            await this.db.rollback();
 
+            resolve({
+              errorCode: error?.errno,
+              errorMessage: error?.sqlMessage,
+            });
+          });
+      });
+    });
+  }
+
+  private editArticle(articleId: number, data: IEditArticle) {
+    return this.db.execute(
+      `UPDATE
+            article
+        SET
+            title = ?,
+            excerpt = ?,
+            description = ?,
+            is_active = ?,
+            is_promoted = ?
+        WHERE
+            article_id = ?;`,
+      [
+        data.title,
+        data.excerpt,
+        data.description,
+        data.isActive ? 1 : 0,
+        data.isPromoted ? 1 : 0,
+        articleId,
+      ]
+    );
+  }
+
+  private insertOrUpdateFeatureValue(
+    articleId: number,
+    fv: ArticleFeatureValue
+  ) {
+    return this.db.execute(
+      `INSERT
+          article_feature
+      SET
+          article_id = ?,
+          feature_id = ?,
+          value      = ?
+      ON DUPLICATE KEY
+      UPDATE
+          value      = ?;`,
+      [articleId, fv.featureId, fv.value, fv.value]
+    );
+  }
+
+  private deleteArticleFeature(articleId: number, featureId: number) {
+    return this.db.execute(
+      `DELETE FROM
+            article_feature
+        WHERE
+            article_id = ? AND
+            feature_id = ?;`,
+      [articleId, featureId]
+    );
+  }
+
+  private addArticlePrice(articleId: number, newPrice: number) {
+    return this.db.execute(
+      `INSERT
+          article_price
+      SET
+          article_id = ?,
+          price = ?;`,
+      [articleId, newPrice]
+    );
+  }
+
+  public async edit(
+    articleId: number,
+    data: IEditArticle
+  ): Promise<ArticleModel | null | IErrorResponse> {
+    return new Promise<ArticleModel | null | IErrorResponse>(
+      async (resolve) => {
+        const currentArticle = await this.getById(articleId, {
+          loadFeatures: true,
+        });
+
+        if (currentArticle === null) {
+          return resolve(null);
+        }
+
+        const rollbackAndResolve = async (error) => {
+          await this.db.rollback();
           resolve({
             errorCode: error?.errno,
             errorMessage: error?.sqlMessage,
           });
-        })
-      });
-    });
+        };
+
+        this.db
+          .beginTransaction()
+          .then(() => {
+            this.editArticle(articleId, data).catch((error) => {
+              rollbackAndResolve({
+                errno: error?.errno,
+                sqlMessage: "Part article: " + error?.sqlMessage,
+              });
+            });
+          })
+          .then(async () => {
+            const currentPrice = (
+              currentArticle as ArticleModel
+            ).currentPrice.toFixed(2);
+            const newPrice = data.price.toFixed(2);
+
+            if (currentPrice !== newPrice) {
+              this.addArticlePrice(articleId, data.price).catch((error) => {
+                rollbackAndResolve({
+                  errno: error?.errno,
+                  sqlMessage: "Part price: " + error?.sqlMessage,
+                });
+              });
+            }
+          })
+          .then(async () => {
+            const willHaveFeatures = data.features.map((fv) => fv.featureId);
+            const currentFeatures = (
+              currentArticle as ArticleModel
+            ).features.map((f) => f.featureId);
+
+            for (const currentFeature of currentFeatures) {
+              if (!willHaveFeatures.includes(currentFeature)) {
+                this.deleteArticleFeature(articleId, currentFeature).catch(
+                  (error) => {
+                    rollbackAndResolve({
+                      errno: error?.errno,
+                      sqlMessage: `Part delete feature ID(${currentFeature}): ${error?.sqlMessage}`,
+                    });
+                  }
+                );
+              }
+            }
+          })
+          .then(async () => {
+            for (const fv of data.features) {
+              this.insertOrUpdateFeatureValue(articleId, fv).catch((error) => {
+                rollbackAndResolve({
+                  errno: error?.errno,
+                  sqlMessage: `Part add/edit feature ID(${fv.featureId}): ${error?.sqlMessage}`,
+                });
+              });
+            }
+          })
+          .then(async () => {
+            this.db.commit().catch((error) => {
+              rollbackAndResolve({
+                errno: error?.errno,
+                sqlMessage: `Part save changes: ${error?.sqlMessage}`,
+              });
+            });
+          })
+          .then(async () => {
+            resolve(
+              await this.getById(articleId, {
+                loadCategory: true,
+                loadFeatures: true,
+                loadPhotos: true,
+                loadPrices: true,
+              })
+            );
+          })
+          .catch(async (error) => {
+            await this.db.rollback();
+
+            resolve({
+              errorCode: error?.errno,
+              errorMessage: error?.sqlMessage,
+            });
+          });
+      }
+    );
   }
 }
 

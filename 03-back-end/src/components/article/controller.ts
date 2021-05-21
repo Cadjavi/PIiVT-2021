@@ -11,6 +11,7 @@ import { UploadedFile } from "express-fileupload";
 import sizeOf from "image-size";
 import * as path from "path";
 import * as sharp from "sharp";
+import { IEditArticle, IEditArticleValidator } from "./dto/IEditArticles";
 
 class ArticleController extends BaseController {
   public async getById(req: Request, res: Response) {
@@ -183,6 +184,29 @@ class ArticleController extends BaseController {
     } catch (e) {
       res.status(400).send(e?.message);
     }
+  }
+
+  public async edit(req: Request, res: Response) {
+    const id: number = +req.params?.id;
+
+    if (id <= 0) {
+      return res.sendStatus(400);
+    }
+
+    if (!IEditArticleValidator(req.body)) {
+      return res.status(400).send(IEditArticleValidator.errors);
+    }
+
+    const result = await this.services.articleService.edit(
+      id,
+      req.body as IEditArticle
+    );
+
+    if (result === null) {
+      return res.sendStatus(404);
+    }
+
+    res.send(result);
   }
 }
 
