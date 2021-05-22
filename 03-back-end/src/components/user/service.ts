@@ -6,7 +6,6 @@ import { IAddUser } from "./dto/AddUser";
 import IErrorResponse from "../../common/IErrorRrsponse.interface";
 import { IEditUser } from "./dto/EditUser";
 
-
 class UserModelAdapterOptions implements IModelAdapterOptions {
   loadOrders: boolean = false;
 }
@@ -45,6 +44,21 @@ class UserService extends BaseService<UserModel> {
       userId,
       {}
     )) as UserModel | null;
+  }
+
+  public async getByEmail(email: string): Promise<UserModel | null> {
+    const users = await this.getAllByFieldNameFromTable(
+      "user",
+      "email",
+      email,
+      {}
+    );
+
+    if (!Array.isArray(users) || users.length === 0) {
+      return null;
+    }
+
+    return users[0];
   }
 
   public async add(data: IAddUser): Promise<UserModel | IErrorResponse> {
