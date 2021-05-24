@@ -16,6 +16,8 @@ import AdministratorRouter from "./components/admin/router";
 import UserRouter from './components/user/router';
 import UserService from './components/user/service';
 import AuthRouter from "./components/auth/router";
+import CartService from "./components/cart/service";
+import CartRouter from "./components/cart/router";
 
 async function main() {
   const application: express.Application = express();
@@ -59,6 +61,7 @@ async function main() {
     articleService: new ArticleService(resourses),
     administratorService: new AdministratorService(resourses),
     userService: new UserService(resourses),
+    cartService: new CartService(resourses),
   };
 
   application.use(
@@ -79,6 +82,7 @@ async function main() {
     new AdministratorRouter(),
     new UserRouter(),
     new AuthRouter(),
+    new CartRouter(),
   ]);
 
   application.use((req, res) => {
