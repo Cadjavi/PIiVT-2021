@@ -1,40 +1,47 @@
 /* eslint-disable @typescript-eslint/no-useless-constructor */
 import React from "react";
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col } from "react-bootstrap";
 
 class BasePageProperties {
-    sidebar?: JSX.Element = undefined
+  sidebar?: JSX.Element = undefined;
+  match?: any;
 }
 
 export { BasePageProperties };
 
-export default abstract class BasePage<Properties extends BasePageProperties> extends React.Component<Properties> {
-    constructor(props: Properties) {
-        super(props);
-    }
+export default abstract class BasePage<
+  Properties extends BasePageProperties
+> extends React.Component<Properties> {
+  constructor(props: Properties) {
+    super(props);
+  }
 
-    render() {
-        const sidebarSizeOnMd = this.props.sidebar ? 3 : 0;
-        const sidebarSizeOnLg = this.props.sidebar ? 4 : 0;
+  render() {
+    const sidebarSizeOnMd = this.props.sidebar ? 3 : 0;
+    const sidebarSizeOnLg = this.props.sidebar ? 4 : 0;
 
-        return (
-            <Row className="page-holder">
-                <Col className="page-body"
-                     sm={ 12 }
-                     md={ 12 - sidebarSizeOnMd }
-                     lg={ 12 - sidebarSizeOnLg }>
-                    { this.renderMain() }
-                </Col>
+    return (
+      <Row className="page-holder">
+        <Col
+          className="page-body"
+          sm={12}
+          md={12 - sidebarSizeOnMd}
+          lg={12 - sidebarSizeOnLg}
+        >
+          {this.renderMain()}
+        </Col>
 
-                <Col className="page-sidebar"
-                    sm={ 12 }
-                    md={ sidebarSizeOnMd }
-                    lg={ sidebarSizeOnLg }>
-                    { this.props.sidebar }
-                </Col>
-            </Row>
-        );
-    }
+        <Col
+          className="page-sidebar"
+          sm={12}
+          md={sidebarSizeOnMd}
+          lg={sidebarSizeOnLg}
+        >
+          {this.props.sidebar}
+        </Col>
+      </Row>
+    );
+  }
 
-    abstract renderMain(): JSX.Element;
+  abstract renderMain(): JSX.Element;
 }
