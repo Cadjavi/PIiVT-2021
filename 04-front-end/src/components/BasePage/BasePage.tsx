@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-useless-constructor */
 import React from "react";
 import { Row, Col } from "react-bootstrap";
 
@@ -12,10 +11,6 @@ export { BasePageProperties };
 export default abstract class BasePage<
   Properties extends BasePageProperties
 > extends React.Component<Properties> {
-  constructor(props: Properties) {
-    super(props);
-  }
-
   render() {
     const sidebarSizeOnMd = this.props.sidebar ? 3 : 0;
     const sidebarSizeOnLg = this.props.sidebar ? 4 : 0;
