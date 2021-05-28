@@ -31,11 +31,11 @@ export default class AuthMiddleware {
     const [tokenType, tokenString] = token.trim().split(" ");
 
     if (tokenType !== "Bearer") {
-      return res.status(400).send("Invalid token type specified");
+      return res.status(401).send("Invalid auth token type specified.");
     }
 
     if (typeof tokenString !== "string" || tokenString.length === 0) {
-      return res.status(400).send("Invalid token length");
+      return res.status(401).send("Invalid auth token length.");
     }
 
     const userTokenvalidation = this.validateTokenAsTokenByRole(
@@ -54,12 +54,12 @@ export default class AuthMiddleware {
       administratorTokenvalidation.isValid === false
     ) {
       return res
-        .status(500)
+        .status(401)
         .send(
           "Token validation error: " +
-            userTokenvalidation +
+            JSON.stringify(userTokenvalidation) +
             " " +
-            administratorTokenvalidation
+            JSON.stringify(administratorTokenvalidation)
         );
     }
 
@@ -70,13 +70,13 @@ export default class AuthMiddleware {
     }
 
     if (typeof result !== "object") {
-      return res.status(400).send("Bad auth token data. ");
+      return res.status(401).send("Bad auth token data.");
     }
 
     const data: ITokenData = result as ITokenData;
 
     if (!allowedRoles.includes(data.role)) {
-      return res.status(403).send("Access denied for this role. ");
+      return res.status(403).send("Access denied to this role.");
     }
 
     req.authorized = data;
