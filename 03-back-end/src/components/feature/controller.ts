@@ -78,9 +78,13 @@ class FeatureController extends BaseController{
     }
 
     res.send(
-      await this.services.featureService.edit(featureId, req.body as IEditFeature, {
-        loadCategory: true,
-      })
+      await this.services.featureService.edit(
+        featureId,
+        req.body as IEditFeature,
+        {
+          loadCategory: true,
+        }
+      )
     );
   }
 }

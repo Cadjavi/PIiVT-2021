@@ -37,30 +37,26 @@ class FeatureService extends BaseService<FeatureModel> {
     return await this.getByIdFromTable("feature", featureId, options);
   }
 
-  public async getAllByCategoryId(
-    categoryId: number
-  ): Promise<FeatureModel[]> {
+  public async getAllByCategoryId(categoryId: number): Promise<FeatureModel[]> {
     const allFeatures: FeatureModel[] = [];
 
-    const firstParent: CategoryModel = (await this.services.categoryService.getById(
-      categoryId
-    )) as CategoryModel;
-    let currnetPatent: CategoryModel = firstParent;
+    let currentParent: CategoryModel | null =
+      (await this.services.categoryService.getById(
+        categoryId
+      )) as CategoryModel;
 
-    while (currnetPatent !== null) {
+    while (currentParent !== null) {
       allFeatures.push(
         ...((await this.getAllByFieldNameFromTable(
           "feature",
           "category_id",
-          currnetPatent.categoryId
+          currentParent.categoryId
         )) as FeatureModel[])
       );
-      currnetPatent = await this.services.categoryService.getById(
-        currnetPatent.parentCategoryId
-      )as CategoryModel | null;
 
-        
-      
+      currentParent = (await this.services.categoryService.getById(
+        currentParent.parentCategoryId
+      )) as CategoryModel | null;
     }
 
     return allFeatures;

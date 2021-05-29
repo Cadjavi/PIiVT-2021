@@ -29,7 +29,7 @@ export default class FeatureRouter implements IRouter {
         featureController.add.bind(featureController)
     );
     application.put(
-        "/feature",
+        "/feature/:id",
         featureController.edit.bind(featureController)
     )
   }
