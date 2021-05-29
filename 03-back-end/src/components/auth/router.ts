@@ -1,6 +1,7 @@
 import * as express from "express";
 import AuthController from "./controller";
 import IRouter from "../../common/IRouter.interface";
+import AuthMiddleware from "../../middleware/auth.middleware";
 import IApplicationResources from "../../common/IApplicationResourses.interface";
 
 export default class AuthRouter implements IRouter {
@@ -18,6 +19,7 @@ export default class AuthRouter implements IRouter {
       "/auth/administrator/login",
       authController.administratorLogin.bind(authController)
     );
+
     application.post(
       "/auth/user/refresh",
       authController.userRefresh.bind(authController)
@@ -25,6 +27,18 @@ export default class AuthRouter implements IRouter {
     application.post(
       "/auth/administrator/refresh",
       authController.administratorRefresh.bind(authController)
+    );
+
+    application.get(
+      "/auth/user/ok",
+      AuthMiddleware.getVerifier("user"),
+      authController.sendOk.bind(authController)
+    );
+
+    application.get(
+      "/auth/administrator/ok",
+      AuthMiddleware.getVerifier("administrator"),
+      authController.sendOk.bind(authController)
     );
   }
 }

@@ -27,7 +27,6 @@ export default class AuthController extends BaseController {
     }
 
     if (!bcrypt.compareSync(data.password, user.passwordHash)) {
-      // Anti-brute-force mera: sacekati 1s pre slanja odgovora da lozinka nije dobra
       await new Promise((resolve) => setTimeout(resolve, 1000));
       return res.status(403).send("Invalid user password.");
     }
@@ -82,7 +81,6 @@ export default class AuthController extends BaseController {
     }
 
     if (!bcrypt.compareSync(data.password, administrator.passwordHash)) {
-      // Anti-brute-force mera: sacekati 1s pre slanja odgovora da lozinka nije dobra
       await new Promise((resolve) => setTimeout(resolve, 1000));
       return res.status(403).send("Invalid administrator password.");
     }
@@ -173,5 +171,9 @@ export default class AuthController extends BaseController {
         return res.status(400).send("Invalid refresh token: " + e?.message);
       }
     };
+  }
+
+  public sendOk(req: Request, res: Response) {
+    res.send("OK");
   }
 }
