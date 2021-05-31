@@ -34,6 +34,12 @@ export default class TopMenu extends React.Component<TopMenuProperties> {
               Register
             </Link>
           </Nav.Item>
+
+          <Nav.Item>
+            <Link className="nav-link" to="/administrator/login">
+              Admin login
+            </Link>
+          </Nav.Item>
         </Nav>
       );
     }
@@ -42,38 +48,38 @@ export default class TopMenu extends React.Component<TopMenuProperties> {
       return (
         <Nav className="justify-content-center">
           <Nav.Item>
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-          </Nav.Item>
-
-          <Nav.Item>
             <Link className="nav-link" to="/dashboard/category">
-              Category management
+              Categories
             </Link>
           </Nav.Item>
 
           <Nav.Item>
             <Link className="nav-link" to="/dashboard/article">
-              Article management
+              Articles
             </Link>
           </Nav.Item>
 
           <Nav.Item>
             <Link className="nav-link" to="/dashboard/user">
-              User management
+              Users
             </Link>
           </Nav.Item>
 
           <Nav.Item>
             <Link className="nav-link" to="/dashboard/order">
-              Order management
+              Orders
+            </Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Link className="nav-link" to="/dashboard/administrator">
+              Administrators
             </Link>
           </Nav.Item>
 
           <Nav.Item>
             <Link className="nav-link" to="/administrator/logout">
-              User login
+              Logout
             </Link>
           </Nav.Item>
         </Nav>

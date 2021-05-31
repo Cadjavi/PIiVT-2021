@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import { saveAuthToken, saveRefreshToken } from "../../api/api";
 import EventRegister from "../../api/EventRegister";
 
+
+
 class UserLogoutState {
   logoutDone: boolean = false;
 }

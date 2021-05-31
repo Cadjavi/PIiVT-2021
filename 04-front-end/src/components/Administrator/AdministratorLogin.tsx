@@ -4,21 +4,21 @@ import EventRegister from "../../api/EventRegister";
 import AuthService from "../../services/AuthService";
 import { Redirect } from "react-router-dom";
 
-class UserLoginState {
-  email: string = "";
+class AdministratorLoginState {
+  username: string = "";
   password: string = "";
   message: string = "";
   isLoggedIn: boolean = false;
 }
 
-export default class UserLogin extends BasePage<{}> {
-  state: UserLoginState;
+export default class AdministratorLogin extends BasePage<{}> {
+  state: AdministratorLoginState;
 
   constructor(props: any) {
     super(props);
 
     this.state = {
-      email: "",
+      username: "",
       password: "",
       message: "",
       isLoggedIn: false,
@@ -35,7 +35,7 @@ export default class UserLogin extends BasePage<{}> {
 
   renderMain(): JSX.Element {
     if (this.state.isLoggedIn) {
-      return <Redirect to="/category" />;
+      return <Redirect to="/dashboard/category" />;
     }
 
     return (
@@ -44,17 +44,17 @@ export default class UserLogin extends BasePage<{}> {
           <Card>
             <Card.Body>
               <Card.Title>
-                <b>User Login</b>
+                <b>Administrator Login</b>
               </Card.Title>
               <Card.Text as="div">
                 <Form>
                   <Form.Group>
-                    <Form.Label>E-mail:</Form.Label>
+                    <Form.Label>Username:</Form.Label>
                     <Form.Control
-                      type="email"
-                      placeholder="Enter your e-mail here..."
-                      value={this.state.email}
-                      onChange={this.onChangeInput("email")}
+                      type="username"
+                      placeholder="Enter your username here..."
+                      value={this.state.username}
+                      onChange={this.onChangeInput("username")}
                     />
                   </Form.Group>
 
@@ -93,11 +93,14 @@ export default class UserLogin extends BasePage<{}> {
   }
 
   private handleLogInButtonClick() {
-    AuthService.attemptUserLogin(this.state.email, this.state.password);
+    AuthService.attemptAdministratorLogin(
+      this.state.username,
+      this.state.password
+    );
   }
 
   private onChangeInput(
-    field: "email" | "password"
+    field: "username" | "password"
   ): (event: React.ChangeEvent<HTMLInputElement>) => void {
     return (event: React.ChangeEvent<HTMLInputElement>) => {
       this.setState({
@@ -107,13 +110,13 @@ export default class UserLogin extends BasePage<{}> {
   }
 
   private handleAuthEvent(status: string, data: any) {
-    if (status === "user_login_failed") {
+    if (status === "administrator_login_failed") {
       if (
         Array.isArray(data?.data) &&
-        data?.data[0]?.instancePath === "/email"
+        data?.data[0]?.instancePath === "/username"
       ) {
         return this.setState({
-          message: "Invalid email: " + data?.data[0]?.message,
+          message: "Invalid username: " + data?.data[0]?.message,
         });
       }
 
@@ -128,7 +131,7 @@ export default class UserLogin extends BasePage<{}> {
 
       if (data?.status === 404) {
         return this.setState({
-          message: "User not found.",
+          message: "Administrator not found.",
         });
       }
 
@@ -139,9 +142,9 @@ export default class UserLogin extends BasePage<{}> {
       }
     }
 
-    if (status === "user_login") {
+    if (status === "administrator_login") {
       return this.setState({
-        email: "",
+        username: "",
         password: "",
         isLoggedIn: true,
       });
