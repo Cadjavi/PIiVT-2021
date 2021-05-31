@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
 import TopMenu from "../TopMenu/TopMenu";
 import "./Application.sass";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
@@ -80,7 +80,11 @@ export default class Application extends React.Component {
         <Container className="Application">
           <div className="Application-header">Front-end aplikacije</div>
 
-          <TopMenu currentMenuType={this.state.authorizedRole} />
+          <>
+            <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
+              <TopMenu currentMenuType={this.state.authorizedRole} />
+            </Navbar>
+          </>
 
           <div className="Application-body">
             <Switch>
