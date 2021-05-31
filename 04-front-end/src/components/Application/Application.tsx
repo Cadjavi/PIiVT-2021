@@ -15,6 +15,7 @@ import UserRegistration from "../User/UserRegistration";
 import AdministratorLogin from "../Administrator/AdministratorLogin";
 import AdministratorLogout from "../Administrator/AdministratorLogout";
 import CategoryDashboardList from "../Administrator/Dashboard/Category/CategoryDashboardList";
+import CategoryDashboardAdd from "../Administrator/Dashboard/Category/CategoryDashboardAdd";
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
 }
@@ -125,6 +126,12 @@ export default class Application extends React.Component {
                 exact
                 path="/dashboard/category"
                 component={CategoryDashboardList}
+              />
+
+              <Route
+                exact
+                path="/dashboard/category/add"
+                component={CategoryDashboardAdd}
               />
             </Switch>
           </div>
