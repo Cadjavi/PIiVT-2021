@@ -42,7 +42,7 @@ export default class UserRegistration extends BasePage<{}> {
     return (
       <Row>
         <Col sm={12} lg={{ span: 10, offset: 1 }}>
-          <Card>
+          <Card border="primary" style={{ width: '56rem' }} className="mt-3">
             <Card.Body>
               <Card.Title>
                 <b>User Register</b>

@@ -44,7 +44,7 @@ export default class UserLogin extends BasePage<{}> {
     return (
       <Row>
         <Col sm={12} md={{ span: 6, offset: 3 }} lg={{ span: 4, offset: 4 }}>
-          <Card>
+          <Card border="primary" style={{ width: '18rem' }} className="mt-3">
             <Card.Body>
               <Card.Title>
                 <b>User Login</b>
