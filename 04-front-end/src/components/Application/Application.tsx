@@ -16,6 +16,7 @@ import AdministratorLogin from "../Administrator/AdministratorLogin";
 import AdministratorLogout from "../Administrator/AdministratorLogout";
 import CategoryDashboardList from "../Administrator/Dashboard/Category/CategoryDashboardList";
 import CategoryDashboardAdd from "../Administrator/Dashboard/Category/CategoryDashboardAdd";
+import CategoryDashboardEdit from "../Administrator/Dashboard/Category/CategoryDashboardEdit";
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
 }
@@ -82,9 +83,7 @@ export default class Application extends React.Component {
           <div className="Application-header">Front-end aplikacije</div>
 
           <Navbar bg="dark" variant="dark">
-
-          <TopMenu currentMenuType={this.state.authorizedRole} />
-
+            <TopMenu currentMenuType={this.state.authorizedRole} />
           </Navbar>
 
           <div className="Application-body">
@@ -132,6 +131,11 @@ export default class Application extends React.Component {
                 exact
                 path="/dashboard/category/add"
                 component={CategoryDashboardAdd}
+              />
+
+              <Route
+                path="/dashboard/category/edit/:cid"
+                component={CategoryDashboardEdit}
               />
             </Switch>
           </div>
