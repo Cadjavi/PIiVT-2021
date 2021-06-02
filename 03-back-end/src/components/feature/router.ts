@@ -11,7 +11,6 @@ export default class FeatureRouter implements IRouter {
     application: express.Application,
     resourses: IApplicationResourses
   ) {
-    
     const featureController: FeatureController = new FeatureController(
       resourses
     );
@@ -24,13 +23,14 @@ export default class FeatureRouter implements IRouter {
       "/category/:cid/feature",
       featureController.getAllInCategory.bind(featureController)
     );
-    application.post(
-        "/feature",
-        featureController.add.bind(featureController)
-    );
+    application.post("/feature", featureController.add.bind(featureController));
     application.put(
-        "/feature/:id",
-        featureController.edit.bind(featureController)
-    )
+      "/feature/:id",
+      featureController.edit.bind(featureController)
+    );
+    application.delete(
+      "/feature/:id",
+      featureController.delete.bind(featureController)
+    );
   }
 }
