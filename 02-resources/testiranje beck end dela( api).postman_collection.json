@@ -1,0 +1,5264 @@
+{
+	"info": {
+		"_postman_id": "08cb3159-2dd2-42d7-bf1f-2d882c71f74b",
+		"name": "testiranje beck end dela( api)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "GET all categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "281"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"119-kR7H7k7qtzjTZABiZudRDWitqSU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 May 2021 13:03:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 1,\n        \"name\": \"Category A\",\n        \"imagePath\": \"static.categories/1.png\",\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": []\n    },\n    {\n        \"categoryId\": 2,\n        \"name\": \"Category B\",\n        \"imagePath\": \"static.categories/2.png\",\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single category - for an existing category ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "139"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8b-B++DodrdrIH/q7UWZnYlbYAlduA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 May 2021 14:44:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 1,\n    \"name\": \"Category A\",\n    \"imagePath\": \"static.categories/1.png\",\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subcategories\": []\n}"
+						},
+						{
+							"name": "GET a single category - with an invalid category ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/-2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"-2"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"b-EFiDB1U+dmqzx9Mo2UjcZ1SJPO8\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 May 2021 14:45:39 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Bad Request"
+						},
+						{
+							"name": "GET a single category - with an ID of a non existing category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/45",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"45"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 15 May 2021 14:46:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "Post new category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Overwatch\",\r\n    \"imagePath\": \"/static/categories/ow.png\",\r\n    \"parentcategoryId\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post new category- with parent",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Overwatch\",\r\n    \"imagePath\": \"/static/categories/ow.png\",\r\n    \"parentcategoryId\": 9\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Post new category- without parent",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Overwatch\",\r\n    \"imagePath\": \"/static/categories/ow.png\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/category/21",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"21"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Šećerni proizvodi\",\r\n    \"imagePath\": \"/static/categories/šp.jpg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/category/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-zrhAtX77pJlx3lls3eFjK3wsGek\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 27 May 2021 12:40:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"parentCategoryId\": null,\n    \"parentCategory\": null,\n    \"subcategories\": [],\n    \"features\": [],\n    \"categoryId\": 2,\n    \"name\": \"Šećerni proizvodi\",\n    \"imagePath\": \"/static/categories/šp.jpg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/4",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a category that has subcategories",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/4",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-KQn45nxzF2CIhtX5GI3LWvmB9vk\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 11:02:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -2,\n    \"errorMessage\": \"This record could not be deleted beucase it has subcategories.\"\n}"
+						},
+						{
+							"name": "Delete a category that does not exist",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/21",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"21"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "93"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5d-rEcAeLHHZzwz3xXTABzbxX4ny9I\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 11:02:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -1,\n    \"errorMessage\": \"This record could not be deleted because it does not exist.\"\n}"
+						},
+						{
+							"name": "Delete a category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/23",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"23"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "52"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"34-3Woi6Y4X+M3qVvsIQ1xzM++GrlM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 11:10:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"One record deleted.\"\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_USER_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Feature",
+			"item": [
+				{
+					"name": "GET a single feature",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/feature/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"feature",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single feature",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/feature/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "202"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ca-QrnYPXuc9L49wsZiOsFXMEGX/oQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 13:35:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 4,\n    \"category\": {\n        \"parentCategoryId\": 1,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"categoryId\": 4,\n        \"name\": \"Hard diskovi\",\n        \"imagePath\": \"/static/categories/hdd.jpg\"\n    },\n    \"featureId\": 2,\n    \"name\": \"Dimenzije\"\n}"
+						},
+						{
+							"name": "GET a single feature - with a non-existing feature ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/feature/2333",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"2333"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 13:36:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "GET all featuers of a category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/4/feature",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"4",
+								"feature"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all featuers of a category with parent category features",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/6/feature",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"6",
+										"feature"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "407"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"197-fZo0uuJt6kRtfIwzInYuTPyqxHA\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 13:33:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 6,\n        \"category\": null,\n        \"featureId\": 6,\n        \"name\": \"Tehnologija\"\n    },\n    {\n        \"categoryId\": 4,\n        \"category\": null,\n        \"featureId\": 1,\n        \"name\": \"Kapacitet (GB)\"\n    },\n    {\n        \"categoryId\": 4,\n        \"category\": null,\n        \"featureId\": 2,\n        \"name\": \"Dimenzije\"\n    },\n    {\n        \"categoryId\": 4,\n        \"category\": null,\n        \"featureId\": 3,\n        \"name\": \"Tip konektora\"\n    },\n    {\n        \"categoryId\": 1,\n        \"category\": null,\n        \"featureId\": 4,\n        \"name\": \"Proizvođač\"\n    },\n    {\n        \"categoryId\": 1,\n        \"category\": null,\n        \"featureId\": 5,\n        \"name\": \"Model\"\n    }\n]"
+						},
+						{
+							"name": "GET all featuers of a category - with a non-existing  catefory ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/category/411/feature",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"category",
+										"411",
+										"feature"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 13:37:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "POST a new feature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"asdasd\",\r\n    \"categoryId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/feature",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"feature"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new feature",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Izdavac\",\r\n    \"categoryId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/feature",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "64"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"40-Bz1GAVxMeKCo1eCtp1V1d9L3EI0\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 18 May 2021 13:39:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 2,\n    \"category\": null,\n    \"featureId\": 12,\n    \"name\": \"Izdavac\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing feature",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/feature/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"feature",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing feature",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rok trajanja\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/feature/9",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "202"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ca-n/3Ps4b1z3H3Ar1FGDayT3KjAMY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 15:31:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 3,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 3,\n        \"name\": \"Bombone\",\n        \"imagePath\": \"bombone.jpg\"\n    },\n    \"featureId\": 9,\n    \"name\": \"Rok trajanja\"\n}"
+						},
+						{
+							"name": "PUT to edit an existing feature - with a non-existing ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Rok trajanja\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/feature/91",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"feature",
+										"91"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 29 May 2021 15:32:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "GET a single article",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single article",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "941"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3ad-/3ScGTi1zIQz3IJ5dvYhM+/s0Ns\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 14:41:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [\n        {\n            \"priceId\": 1,\n            \"createdAt\": \"2021-05-19T14:06:33.000Z\",\n            \"price\": 43\n        },\n        {\n            \"priceId\": 2,\n            \"createdAt\": \"2021-05-19T14:11:38.000Z\",\n            \"price\": 455\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 1,\n            \"imagePath\": \"asdasd/asdasd.jpg\"\n        },\n        {\n            \"photoId\": 2,\n            \"imagePath\": \"ajmo/bre.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 1,\n            \"name\": \"Kapacitet (GB)\",\n            \"value\": \"500gb\"\n        },\n        {\n            \"featureId\": 2,\n            \"name\": \"Dimenzije\",\n            \"value\": \"2.5''\"\n        },\n        {\n            \"featureId\": 3,\n            \"name\": \"Tip konektora\",\n            \"value\": \"SATA\"\n        },\n        {\n            \"featureId\": 4,\n            \"name\": \"Proizvođač\",\n            \"value\": \"Kingston\"\n        },\n        {\n            \"featureId\": 5,\n            \"name\": \"Model\",\n            \"value\": \"ship 335\"\n        },\n        {\n            \"featureId\": 6,\n            \"name\": \"Tehnologija\",\n            \"value\": \"m.2\"\n        }\n    ],\n    \"articleId\": 1,\n    \"title\": \"Kingston disk\",\n    \"excerpt\": \"kratak opis\",\n    \"description\": \"detaljan opis\",\n    \"isActive\": true,\n    \"isPromoted\": false,\n    \"createdAt\": \"2021-05-19T13:50:46.000Z\",\n    \"categoryId\": 6,\n    \"currentPrice\": 455,\n    \"category\": {\n        \"parentCategoryId\": 4,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 6,\n        \"name\": \"SSD diskovi\",\n        \"imagePath\": \"/static/categories/hdd-ssd.png\"\n    }\n}"
+						},
+						{
+							"name": "GET a single article - with non-existing ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 19 May 2021 14:42:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "data",
+									"value": "{\n\t\"title\": \"Softver za video produkciju 2\",\n\t\"excerpt\": \"Kratak opis 2\",\n\t\"description\": \"Detaljan opis 2\",\n\t\"isActive\": true,\n\t\"isPromoted\": false,\n\t\"price\": 666,\n\t\"categoryId\": 2,\n\t\"features\": [{\n\t\t\t\"featureId\": 7,\n\t\t\t\"value\": \"ACME\"\n\t\t},\n\t\t{\n\t\t\t\"featureId\": 8,\n\t\t\t\"value\": \"2021\"\n\t\t}\n\t]\n}",
+									"type": "text"
+								},
+								{
+									"key": "photo1",
+									"type": "file",
+									"src": "/C:/Users/cadjo/Desktop/download.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/article",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new article with image",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "data",
+											"value": "{\n\t\"title\": \"Softver za video produkciju 2\",\n\t\"excerpt\": \"Kratak opis 2\",\n\t\"description\": \"Detaljan opis 2\",\n\t\"isActive\": true,\n\t\"isPromoted\": false,\n\t\"price\": 666,\n\t\"categoryId\": 2,\n\t\"features\": [{\n\t\t\t\"featureId\": 7,\n\t\t\t\"value\": \"ACME\"\n\t\t},\n\t\t{\n\t\t\t\"featureId\": 8,\n\t\t\t\"value\": \"2021\"\n\t\t}\n\t]\n}",
+											"type": "text"
+										},
+										{
+											"key": "photo1",
+											"type": "file",
+											"src": "/C:/Users/cadjo/Desktop/download.jpg"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/article",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "647"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"287-yGlISQ+stxkOnky7kmNtimI+G9c\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 May 2021 11:34:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [],\n    \"photos\": [\n        {\n            \"photoId\": 3,\n            \"imagePath\": \"static/uploads/2021/05/c6753eb2-7919-4ab6-acad-774a6c1da376-download.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 7,\n            \"name\": \"Produkciona kuća\",\n            \"value\": \"ACME\"\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Godina izdanja\",\n            \"value\": \"2021\"\n        }\n    ],\n    \"articleId\": 4,\n    \"title\": \"Softver za video produkciju 2\",\n    \"excerpt\": \"Kratak opis 2\",\n    \"description\": \"Detaljan opis 2\",\n    \"isActive\": true,\n    \"isPromoted\": false,\n    \"createdAt\": \"2021-05-20T12:34:38.000Z\",\n    \"categoryId\": 2,\n    \"currentPrice\": 666,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing article",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"Softver za video produkciju 666\",\r\n\t\"excerpt\": \"Kratak opis 666\",\r\n\t\"description\": \"Detaljan opis 666\",\r\n\t\"isActive\": true,\r\n\t\"isPromoted\": false,\r\n\t\"price\": 1111,\r\n\t\"categoryId\": 2,\r\n\t\"features\": [{\r\n\t\t\t\"featureId\": 7,\r\n\t\t\t\"value\": \"AAAA\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 8,\r\n\t\t\t\"value\": \"BBBB\"\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/article/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing article",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"Softver za video produkciju 666\",\r\n\t\"excerpt\": \"Kratak opis 666\",\r\n\t\"description\": \"Detaljan opis 666\",\r\n\t\"isActive\": true,\r\n\t\"isPromoted\": false,\r\n\t\"price\": 1111,\r\n\t\"features\": [{\r\n\t\t\t\"featureId\": 7,\r\n\t\t\t\"value\": \"AAACCC\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 8,\r\n\t\t\t\"value\": \"BBBB\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/9",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "803"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"323-GndwXNwiTOcO3QNVPNvoOQzfdUk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 May 2021 16:24:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [\n        {\n            \"priceId\": 9,\n            \"createdAt\": \"2021-05-20T14:37:44.000Z\",\n            \"price\": 111\n        },\n        {\n            \"priceId\": 10,\n            \"createdAt\": \"2021-05-20T17:23:04.000Z\",\n            \"price\": 1111\n        }\n    ],\n    \"photos\": [\n        {\n            \"photoId\": 9,\n            \"imagePath\": \"static/uploads/2021/05/95a42b3a-5061-479c-aa13-c0ece1f21a10-stock-photography-slider.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 7,\n            \"name\": \"Produkciona kuća\",\n            \"value\": \"AAACCC\"\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Godina izdanja\",\n            \"value\": \"BBBB\"\n        }\n    ],\n    \"articleId\": 9,\n    \"title\": \"Softver za video produkciju 666\",\n    \"excerpt\": \"Kratak opis 666\",\n    \"description\": \"Detaljan opis 666\",\n    \"isActive\": true,\n    \"isPromoted\": false,\n    \"createdAt\": \"2021-05-20T14:37:44.000Z\",\n    \"categoryId\": 2,\n    \"currentPrice\": 1111,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    }\n}"
+						},
+						{
+							"name": "PUT to edit an existing article - with a non-existing ID",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"title\": \"Softver za video produkciju 666\",\r\n\t\"excerpt\": \"Kratak opis 666\",\r\n\t\"description\": \"Detaljan opis 666\",\r\n\t\"isActive\": true,\r\n\t\"isPromoted\": false,\r\n\t\"price\": 1111,\r\n\t\"features\": [{\r\n\t\t\t\"featureId\": 7,\r\n\t\t\t\"value\": \"AAACCC\"\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"featureId\": 8,\r\n\t\t\t\"value\": \"BBBB\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/99",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"99"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 20 May 2021 16:26:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "DELETE an existing article",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE an existing article",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/11",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"11"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-fnkOTMUmW5tcrtI5d26s3ATy4O8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 13:03:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Article deleted!\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE a single photo of an article",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/12/photo/13",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"12",
+								"photo",
+								"13"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE a single photo of an article",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/12/photo/13",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"12",
+										"photo",
+										"13"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "47"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2f-+DFY8+0YM+KyTge7bv5hfEa9mXg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 13:19:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Photo deleted.\"\n}"
+						},
+						{
+							"name": "DELETE a single photo of an article (Not Found)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/article/12/photo/13",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"12",
+										"photo",
+										"13"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 13:20:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new pohotos to an article",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/article/1/photo",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"article",
+								"1",
+								"photo"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new pohotos to an article",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo1",
+											"type": "file",
+											"src": "/C:/Users/cadjo/Desktop/50556_okcamera-shutterstock-1888743958_f.jpg"
+										},
+										{
+											"key": "photo2",
+											"type": "file",
+											"src": "/C:/Users/cadjo/Desktop/2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/14/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"14",
+										"photo"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "942"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3ae-4ex0duCQE0ydc8ief0WRhoSqvLk\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 13:32:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"prices\": [],\n    \"photos\": [\n        {\n            \"photoId\": 14,\n            \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n        },\n        {\n            \"photoId\": 15,\n            \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n        },\n        {\n            \"photoId\": 16,\n            \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n        }\n    ],\n    \"features\": [\n        {\n            \"featureId\": 7,\n            \"name\": \"Produkciona kuća\",\n            \"value\": \"ACME\"\n        },\n        {\n            \"featureId\": 8,\n            \"name\": \"Godina izdanja\",\n            \"value\": \"2021\"\n        }\n    ],\n    \"articleId\": 14,\n    \"title\": \"Softver za video produkciju 12\",\n    \"excerpt\": \"Kratak opis 1\",\n    \"description\": \"Detaljan opis 1\",\n    \"isActive\": true,\n    \"isPromoted\": false,\n    \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n    \"categoryId\": 2,\n    \"currentPrice\": 111,\n    \"category\": {\n        \"parentCategoryId\": null,\n        \"parentCategory\": null,\n        \"subcategories\": [],\n        \"features\": [],\n        \"categoryId\": 2,\n        \"name\": \"Računarski softver\",\n        \"imagePath\": \"/static/categories/cd.png\"\n    }\n}"
+						},
+						{
+							"name": "POST a new pohotos for a non-existing article ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo1",
+											"type": "file",
+											"src": "/C:/Users/cadjo/Desktop/50556_okcamera-shutterstock-1888743958_f.jpg"
+										},
+										{
+											"key": "photo2",
+											"type": "file",
+											"src": "/C:/Users/cadjo/Desktop/2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/article/143/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"article",
+										"143",
+										"photo"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 13:33:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "GET all artciles for a single category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/category/4/article",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"category",
+								"4",
+								"article"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_USER_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Administrator",
+			"item": [
+				{
+					"name": "GET all admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/administrator",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all admins",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "279"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"117-S0IZgwiuaj7qzBKvgQ0ffMt49MM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:09:34 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"administratorId\": 1,\n        \"username\": \"ACADJO\",\n        \"passwordHash\": \"$2b$11$1v6XM38ECkmCp0UX7JcjNe2e.t2keqhhIrfwSO11.eKzH.5IXvy9W\",\n        \"isActive\": true\n    },\n    {\n        \"administratorId\": 3,\n        \"username\": \"Aleksa CADJO\",\n        \"passwordHash\": \"$2b$11$wD1eRu.IFSXT9RGFSgmP3.43QwZPDtqD7IUbTch7aeCxp/vzHIywK\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/administrator/4",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single admin",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-/OFeOfTuIrNlZ0Mx2eSa9E5wWG0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:08:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"ACADJO\",\n    \"passwordHash\": \"$2b$11$1v6XM38ECkmCp0UX7JcjNe2e.t2keqhhIrfwSO11.eKzH.5IXvy9W\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "GET a single admin - when an admin with the given ID does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:09:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "POST a new admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak1412\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/administrator",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new admin",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak1412\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "135"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"87-/OFeOfTuIrNlZ0Mx2eSa9E5wWG0\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:05:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 1,\n    \"username\": \"ACADJO\",\n    \"passwordHash\": \"$2b$11$1v6XM38ECkmCp0UX7JcjNe2e.t2keqhhIrfwSO11.eKzH.5IXvy9W\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "POST a new admin - when an admin with the same username already exist",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak1412\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "96"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"60-TI4pfyptINDMVMY4t+V64nbb2Yw\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:07:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'ACADJO' for key 'uq_administrator_username'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT to edit an existing admin",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"ajmoidemo\",\r\n    \"isActive\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/administrator/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"administrator",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT to edit an existing admin",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"ajmoidemo\",\r\n    \"isActive\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "142"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8e-FBqoWyJDv8NAh3lTulJz3WCXi2s\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:17:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"administratorId\": 3,\n    \"username\": \"Aleksa CADJO\",\n    \"passwordHash\": \"$2b$11$BfjMY5qUYNGGHmR8hMhpn.IuNwrSw7Irysf/Lq2aXEyFahE7bTbMW\",\n    \"isActive\": false\n}"
+						},
+						{
+							"name": "PUT to edit an non-existing admin -",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"ajmoidemo\",\r\n    \"isActive\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/administrator/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:18:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "Not Found"
+						}
+					]
+				},
+				{
+					"name": "DELETE an admin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": [
+						{
+							"name": "DELETE an admin",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-+/zHhg+84sQie8xvQmB03Ijwjc4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:21:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Deleted 1 records.\"\n}"
+						},
+						{
+							"name": "DELETE an admin that does not exist",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/administrator/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"administrator",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-fdUR+kEYPKq0iXOrFKT1mW2QMoM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:21:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Deleted 0 records.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "GET all user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "305"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"131-ugeLduGHfRbLs1E3YJff07BxC7M\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:46:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"passwordResetCode\": null,\n        \"userId\": 1,\n        \"email\": \"cadjo6@gmail.com\",\n        \"createdAt\": \"2021-05-21T16:46:15.000Z\",\n        \"passwordHash\": \"$2b$11$l6KALdp8fvlAVtnI3oYHpetidC6Sz8YNW4OxTtZRFQwuC0hswVmZG\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Cadjo\",\n        \"phoneNumber\": \"0692172676\",\n        \"postalAddress\": \"Borivoja Stevanovica 5\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET a single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/7",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET a single user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "303"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12f-fTDVgntFV3+cjfDRO+FH269i/xU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:46:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"userId\": 1,\n    \"email\": \"cadjo6@gmail.com\",\n    \"createdAt\": \"2021-05-21T16:46:15.000Z\",\n    \"passwordHash\": \"$2b$11$l6KALdp8fvlAVtnI3oYHpetidC6Sz8YNW4OxTtZRFQwuC0hswVmZG\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Cadjo\",\n    \"phoneNumber\": \"0692172676\",\n    \"postalAddress\": \"Borivoja Stevanovica 5\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "GET a single user with not-existing ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "303"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12f-fTDVgntFV3+cjfDRO+FH269i/xU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:46:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"userId\": 1,\n    \"email\": \"cadjo6@gmail.com\",\n    \"createdAt\": \"2021-05-21T16:46:15.000Z\",\n    \"passwordHash\": \"$2b$11$l6KALdp8fvlAVtnI3oYHpetidC6Sz8YNW4OxTtZRFQwuC0hswVmZG\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Cadjo\",\n    \"phoneNumber\": \"0692172676\",\n    \"postalAddress\": \"Borivoja Stevanovica 5\",\n    \"isActive\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Cadjo\",\r\n    \"phoneNumber\": \"0692172676\",\r\n    \"postalAddress\": \"Borivoja Stevanovica 5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new user",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Cadjo\",\r\n    \"phoneNumber\": \"0692172676\",\r\n    \"postalAddress\": \"Borivoja Stevanovica 5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "303"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"12f-fTDVgntFV3+cjfDRO+FH269i/xU\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:46:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"userId\": 1,\n    \"email\": \"cadjo6@gmail.com\",\n    \"createdAt\": \"2021-05-21T16:46:15.000Z\",\n    \"passwordHash\": \"$2b$11$l6KALdp8fvlAVtnI3oYHpetidC6Sz8YNW4OxTtZRFQwuC0hswVmZG\",\n    \"forename\": \"Aleksa\",\n    \"surname\": \"Cadjo\",\n    \"phoneNumber\": \"0692172676\",\n    \"postalAddress\": \"Borivoja Stevanovica 5\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "POST a new user with same email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Cadjo\",\r\n    \"phoneNumber\": \"0692172676\",\r\n    \"postalAddress\": \"Borivoja Stevanovica 5\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "94"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5e-J4nWdFREn6CFfZtnHZ5tTt+sIwY\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:59:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 1062,\n    \"errorMessage\": \"Duplicate entry 'cadjo6@gmail.com' for key 'uq_user_email'\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT new data for a user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cadjooo6@gmail.com\",\r\n    \"password\": \"medakaa1412\",\r\n    \"forename\": \"Aleksaaaa\",\r\n    \"surname\": \"Cadjenovic\",\r\n    \"phoneNumber\": \"0692172676232323\",\r\n    \"postalAddress\": \"Borivoja Stevanovica 5555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/user/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT new data for a user",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"cadjooo6@gmail.com\",\r\n    \"password\": \"medakaa1412\",\r\n    \"forename\": \"Aleksaaaa\",\r\n    \"surname\": \"Cadjenovic\",\r\n    \"phoneNumber\": \"0692172676232323\",\r\n    \"postalAddress\": \"Borivoja Stevanovica 5555\",\r\n    \"isActive\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "323"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"143-gl4XAuD1PdSgNvnqGVAfoHUaUcI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 15:58:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"passwordResetCode\": null,\n    \"userId\": 1,\n    \"email\": \"cadjooo6@gmail.com\",\n    \"createdAt\": \"2021-05-21T16:46:15.000Z\",\n    \"passwordHash\": \"$2b$11$zbz7Xu9Ab6nwLJt4zvaRT.ORzw65lkfd8ZU11lPpXOC.CY0WvUJ86\",\n    \"forename\": \"Aleksaaaa\",\n    \"surname\": \"Cadjenovic\",\n    \"phoneNumber\": \"0692172676232323\",\n    \"postalAddress\": \"Borivoja Stevanovica 5555\",\n    \"isActive\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE a user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "DELETE a user",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-+/zHhg+84sQie8xvQmB03Ijwjc4\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 16:00:21 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Deleted 1 records.\"\n}"
+						},
+						{
+							"name": "DELETE a user with a non-existing ID",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "51"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"33-fdUR+kEYPKq0iXOrFKT1mW2QMoM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 21 May 2021 16:00:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": 0,\n    \"errorMessage\": \"Deleted 0 records.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new user registration request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\",\r\n    \"forename\": \"Aleksa\",\r\n    \"surname\": \"Cadjo\",\r\n    \"phoneNumber\": \"0692172676\",\r\n    \"postalAddress\": \"Borivoja Stevanovica 5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/user/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "POST a new login request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new login request when the user does not exist",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"cadjo6@gmail.com1\",\r\n    \"password\": \"medak1412\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:42:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								},
+								{
+									"name": "POST a new login request with a incorrect password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak14121\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "22"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"16-fEc1WArHk5yVgGP5ekfvNKEEvfU\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:43:25 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid user password."
+								},
+								{
+									"name": "POST a new login request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1072"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"430-UPdm6YDTAd4DDz0k1KE84KKRj4Y\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:44:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWRlbnRpdHkiOiJjYWRqbzZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjE2NDQyNzEsImV4cCI6MTYyMjI0OTA3MSwiaXNzIjoibG9jYWxob3N0In0.Zp6CN9-dyLnEP97dNuYQfTrersUelaE3LpSXDn2QkDM0-AXVOwcOL5i4CkH7L1UAk07XvFHH8y96ttvfHwhIcljhoji6bCMSvgX3TElVDFBOcT-EXAF30gc4I-9G5A432FkprB62am7WZo6xjQSh5BI4-zFG8_56mdBI5oEya8l4rK-R6E9EosfLqfgEYEtDLwW6p2ZR1tJHZZRAt1-8ld4NXE5B3jL6tvU8XvzmgWh9uNhXpBrw2OkLMdB0BhESx9E_dAwvE_Ezbnp9SFu6Jz4y9dfKvDl1fNZmHuR7aVizgOaNAeWNmJ-wo9N7QXIW3lNIkHxY3NUo9wn2cPHNCA\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWRlbnRpdHkiOiJjYWRqbzZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjE2NDQyNzEsImV4cCI6MTY1MzE4MDI3MSwiaXNzIjoibG9jYWxob3N0In0.AqrWYwsqMPaFh58af-unqNn79sFy_SJE4wn6wmsgyuDQOCcSwUwFmBh6GyvhsiY66gf506C1kLzqqsA03yBuqUmGFXsM7-alesadiHeHtnT9Am6mfLuP9XbYkxqJGick-skdp4UGG2QfjXZoBrMNUdEuFxhDeVPAiDVV9YkMtl1sMy07df2jOscHk1v0tlHy2P-Hr0Q4VHi4AxkBX6YwnAARRsRATBlkOZ6sUEFnElQ5Z3VfVACGgXmrpmdN-S48zlfx_xwCZE3_3VRUhVULlczKJubVWD4LCT-lVDlswjOqRlMR_tciL754WiNU3PU1O1rEMrsQGqagZQht6KzX6w\"\n}"
+								},
+								{
+									"name": "POST a new login request with an inactive user account",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"cadjo6@gmail.com\",\r\n    \"password\": \"medak1412\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "22"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"16-6Z5WGFVxmxeyp4KlKgEc1Q84xLM\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:59:57 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "User account inactive."
+								}
+							]
+						},
+						{
+							"name": "POST a new token refresh request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWRlbnRpdHkiOiJjYWRqbzZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIyMDk0NTksImV4cCI6MTY1Mzc0NTQ1OSwiaXNzIjoibG9jYWxob3N0In0.fqa1rVnSTym0tyep1HwFa43IYFPppvRw7PJHlLRJ1pWVuDknLh3r2uED-WvatId9z4W4Ncvhho68WKYq0feGYhI3hRBG0gdqpGjN1NkaAOPj7pfA_ppFXKQFq9JB6Wth53KdiyQSHLMZJWsTCQ1vJ-AE7ZZHk9lN4KRGfjyc0JNdW8XTM0kcQ_miDUSNVyhRyQgdL_EN_m4wH8LBW8qWyl2HDze16EQjFeeBwbIUAejbfqZwDwouo1d6QLdx9DiEkOOq0eygECQKU4mIKDi3VBcT_GyVOpW7GxF1ZK89IrN8A5yMeAuKzTs_igm4cz8UmMB0p2NURzobgE_Po3n6Ig\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/user/refresh",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"refresh"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new token refresh request -with bad token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"refreshToken\": \"123\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "36"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"24-Cv7RxFtqE6HLKrPqagpaeWKpU2Q\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 13:04:48 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid refresh token: jwt malformed"
+								},
+								{
+									"name": "POST a new token refresh request - no token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"refreshToken\": \"\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "43"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2b-xnXyNLUHmOEF64WAWgWQDNhZTi4\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 13:05:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid refresh token: jwt must be provided"
+								},
+								{
+									"name": "POST a new token refresh request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWRlbnRpdHkiOiJjYWRqbzZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIyMDc0MjQsImV4cCI6MTY1Mzc0MzQyNCwiaXNzIjoibG9jYWxob3N0In0.B3ngpV4K_G5LgN2hTZlMQk5n-jVC2vM0DqLTG0Bx_KTI8i5tudpI8if9_pYWN6NdQXUjaxX6f4NBPigMtvknrDOwXU9kSZUjOsNn6BVIJQ6LNjOjX-A8uxPPfDEdmUuLUp65uUUbNob46VIoKkNGMXnvByw950pqnR_jxS1mM3uxmTqPnDzplbb4WGmuX8hR0pP-zOsH97qRiYhJheMhTzc5neuCu3ozaBuAXtpYPpvVjqCq6r0OW4L4mjpG1rNDIO5sNCNc8NPHDgKAbJP6Kfco6vftdYSK0prHwQxK6lakDFBAKVpczuWVil-D1LWe-fWZDK76oPtHfweWwEl4_A\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/user/refresh",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"user",
+												"refresh"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "http://localhost:3000"
+										},
+										{
+											"key": "Vary",
+											"value": "Origin"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "555"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"22b-TdIlM5BCTbOA6ktubYEmnCOkE6g\""
+										},
+										{
+											"key": "Date",
+											"value": "Fri, 28 May 2021 13:11:19 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWRlbnRpdHkiOiJjYWRqbzZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjIyMDc0NzksImV4cCI6MTYyMjIwNzU5OSwiaXNzIjoibG9jYWxob3N0In0.eSRZ1lf3oXS8LMJYvWDQwgzLGVFjsZC834IqC3xYlJxSYLbjfzyTUtZG1IBOrHMQMiXyjvYsLlZU-4EHlTQvVVAN2KdVUfTSZPdsbKQABvSVZ2gR3aHN6FGNfX9V-WiYpBHuXNKD7Jb-UfAoOW7ibGWnia8iU3_5Z1LmpOuzEHkXjNSj_InWDd78KUz8kYAxwcU-FV0QZ_zcEVfdK0n1_xEewL-G1mmhnIUivVrxun0QsjRJ_-9e8b46RjRVgJAFyNLJF5_juzdfNCbpPfxQE623VzB2q16NBO5Cfh134djBmrs4BX1ftxRSWzQugwmxMzfhPm7GVFxZljG59p4Sgw\",\n    \"refreshToken\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "GET an OK message",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{API_USER_AUTH_TOKEN}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/auth/user/ok",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"user",
+										"ok"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "POST a new login request",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak1412\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/auth/administrator/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"auth",
+										"administrator",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "POST a new login request with a non-existing admin",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"ACADJO1\",\r\n    \"password\": \"medak1412\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "plain",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/plain; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "9"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"9-0gXL1ngzMqISxa6S1zx3F4wtLyg\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:55:18 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Not Found"
+								},
+								{
+									"name": "POST a new login request with an invalid password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak14121\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "31"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1f-6m/3ihwm3QpkaqHI5ehdTGQq6J0\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:55:57 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Invalid administrator password."
+								},
+								{
+									"name": "POST a new login request",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak1412\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1070"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"42e-O2YOaVm04KcU8ZGa1ni/8uvEoTY\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:56:31 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"authToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiJBQ0FESk8iLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTYyMTY0NDk5MSwiZXhwIjoxNjIyMjQ5NzkxLCJpc3MiOiJsb2NhbGhvc3QifQ.CkA1e_BeI5lghtPAoMBmzGIPxy5xitNMqXrlpmcws3bdPWrlcE3YAsB_ioQwnhiebazYyiiCungxnDAoSCGxC63FhNVIpJxEUVzTpS1_ICvWtaDsE5my0nTbsn_8mR_UaJdmnMZGAZVUb8U4ORa4QRdGVz0BpoQ7AqWiE_sfZ5S1vqxlLKW3xpBQ8wqtVv6yfhAPBlFSJU_niG-JC_EZpPzoU6zsR3TUBW6d8dMNVX0_Md4c3DeZLq_V2Y10hubLHxY5n_mT3aCta3HSX4QvVJmGh8xmTBtfBinK6pFuoeFDt2KkYei2xF4xv8Hsj9K6oC3k0_EAvkbAcHpAilABfA\",\n    \"refreshToken\": \"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiJBQ0FESk8iLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTYyMTY0NDk5MSwiZXhwIjoxNjUzMTgwOTkxLCJpc3MiOiJsb2NhbGhvc3QifQ.SDQ3h33nReVr2WNX0_siAvRKnsY1hMd-_pD8jqIhI-rldmrrIPoQnJDHtPDQXr360IAD8_QgMvV0mmHuVh7N1XpRDOnNEFzSWb_yQxAt0xpDAqMOT06F2SOL7Gw1KU330_Du_B92r8la6xPzdggHbdBp48SN7qg5_6vFZEHvaxNox4GbLIrlRrmMsoFS6ONiVue1mJZdG22W3ZL0ZdQFyE_Fgj-bA4ywJp8Fx96UsAa66XTRNh_GA4OrVSUuCr7SySCKTE6KOTun-2BttiSMJY2N4hz_0k4LnKgx43WpOa1spJU974N-BsYMEBOA-xWZbhbg1gVdD3m4q4QxedZ1DQ\"\n}"
+								},
+								{
+									"name": "POST a new login request with an inactive admin account",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"username\": \"ACADJO\",\r\n    \"password\": \"medak1412\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{API_URL}}/auth/administrator/login",
+											"host": [
+												"{{API_URL}}"
+											],
+											"path": [
+												"auth",
+												"administrator",
+												"login"
+											]
+										}
+									},
+									"status": "Forbidden",
+									"code": 403,
+									"_postman_previewlanguage": "html",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Type",
+											"value": "text/html; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "31"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1f-gGX/kiT3mamimbuyelW2JDm0OL8\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 22 May 2021 00:58:56 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "Administrator account inactive."
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "GET the latest cart for the authorized user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET the latest cart for the authorized user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "400"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"190-VsfqiRHK1BqliXkCYtMH75wEYkI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:04:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [],\n    \"order\": null,\n    \"cartId\": 6,\n    \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n    \"userId\": 7,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"userId\": 7,\n        \"email\": \"cadjo6@gmail.com\",\n        \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n        \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Cadjo\",\n        \"phoneNumber\": \"0692172676\",\n        \"postalAddress\": \"Borivoja Stevanovica 5\",\n        \"isActive\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new article to the cart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"articleId\": 14,\r\n    \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new article to the cart - with a non-existing article ID",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"article_id\": 4,\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "161"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a1-9bxpDLRIvNk1NjckVbhk+ncAxWY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:05:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"\",\n        \"schemaPath\": \"#/required\",\n        \"keyword\": \"required\",\n        \"params\": {\n            \"missingProperty\": \"articleId\"\n        },\n        \"message\": \"must have required property 'articleId'\"\n    }\n]"
+						},
+						{
+							"name": "POST a new article to the cart - with an invalid quantity value",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"articleId\": 14,\r\n    \"quantity\": -2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "159"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"9f-nZqlrASHSXmJv9M3q34TyFXoNzE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:15:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/quantity\",\n        \"schemaPath\": \"#/properties/quantity/minimum\",\n        \"keyword\": \"minimum\",\n        \"params\": {\n            \"comparison\": \">=\",\n            \"limit\": 0\n        },\n        \"message\": \"must be >= 0\"\n    }\n]"
+						},
+						{
+							"name": "POST a new article to the cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"articleId\": 14,\r\n    \"quantity\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "977"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d1-j4NqGS6/iIdBwK3mYz45lRjeVYo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:15:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 14,\n            \"quantity\": 2,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 14,\n                        \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n                    },\n                    {\n                        \"photoId\": 15,\n                        \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n                    },\n                    {\n                        \"photoId\": 16,\n                        \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 14,\n                \"title\": \"Softver za video produkciju 12\",\n                \"excerpt\": \"Kratak opis 1\",\n                \"description\": \"Detaljan opis 1\",\n                \"isActive\": true,\n                \"isPromoted\": false,\n                \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n                \"categoryId\": 2,\n                \"currentPrice\": 111,\n                \"category\": {\n                    \"parentCategoryId\": null,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 2,\n                    \"name\": \"Računarski softver\",\n                    \"imagePath\": \"/static/categories/cd.png\"\n                }\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 6,\n    \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n    \"userId\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "PUT a new article quantity value into the cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"articleId\": 14,\r\n    \"quantity\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT a new article quantity value into the cart",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"articleId\": 14,\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "977"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d1-YsWjxSEidtSUk8xdsLiLiIAY1TI\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:17:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 1,\n            \"articleId\": 14,\n            \"quantity\": 1,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 14,\n                        \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n                    },\n                    {\n                        \"photoId\": 15,\n                        \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n                    },\n                    {\n                        \"photoId\": 16,\n                        \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 14,\n                \"title\": \"Softver za video produkciju 12\",\n                \"excerpt\": \"Kratak opis 1\",\n                \"description\": \"Detaljan opis 1\",\n                \"isActive\": true,\n                \"isPromoted\": false,\n                \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n                \"categoryId\": 2,\n                \"currentPrice\": 111,\n                \"category\": {\n                    \"parentCategoryId\": null,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 2,\n                    \"name\": \"Računarski softver\",\n                    \"imagePath\": \"/static/categories/cd.png\"\n                }\n            }\n        }\n    ],\n    \"order\": null,\n    \"cartId\": 6,\n    \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n    \"userId\": 7\n}"
+						},
+						{
+							"name": "PUT a new article quantity value into the cart - delete an article from the cart(quantity = 0)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"articleId\": 14,\r\n    \"quantity\": 0\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"59-nDrUXXVa20TCOfQYlTA9UAMoCfM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:19:47 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [],\n    \"order\": null,\n    \"cartId\": 6,\n    \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n    \"userId\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "POST a new order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "POST a new order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1355"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54b-6Fnu97boet42GofH+jFSBBTpkvY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:21:58 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [\n        {\n            \"cartArticleId\": 4,\n            \"articleId\": 14,\n            \"quantity\": 3,\n            \"article\": {\n                \"prices\": [],\n                \"photos\": [\n                    {\n                        \"photoId\": 14,\n                        \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n                    },\n                    {\n                        \"photoId\": 15,\n                        \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n                    },\n                    {\n                        \"photoId\": 16,\n                        \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n                    }\n                ],\n                \"features\": [],\n                \"articleId\": 14,\n                \"title\": \"Softver za video produkciju 12\",\n                \"excerpt\": \"Kratak opis 1\",\n                \"description\": \"Detaljan opis 1\",\n                \"isActive\": true,\n                \"isPromoted\": false,\n                \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n                \"categoryId\": 2,\n                \"currentPrice\": 111,\n                \"category\": {\n                    \"parentCategoryId\": null,\n                    \"parentCategory\": null,\n                    \"subcategories\": [],\n                    \"features\": [],\n                    \"categoryId\": 2,\n                    \"name\": \"Računarski softver\",\n                    \"imagePath\": \"/static/categories/cd.png\"\n                }\n            }\n        }\n    ],\n    \"order\": {\n        \"orderId\": 6,\n        \"createdAt\": \"2021-05-24T17:21:58.000Z\",\n        \"status\": \"pending\"\n    },\n    \"cartId\": 6,\n    \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n    \"userId\": 7,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"userId\": 7,\n        \"email\": \"cadjo6@gmail.com\",\n        \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n        \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Cadjo\",\n        \"phoneNumber\": \"0692172676\",\n        \"postalAddress\": \"Borivoja Stevanovica 5\",\n        \"isActive\": true\n    }\n}"
+						},
+						{
+							"name": "POST a new order - with an empty cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-0GXPkHaac8pT3CTiQ8JT5h51IeE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:23:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"errorCode\": -3011,\n    \"errorMessage\": \"You cannot make an order with empty cart. \"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET all my orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/cart/order/my",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"order",
+								"my"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all my orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/cart/order/my",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"order",
+										"my"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3698"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e72-3wZoiX9DqydwgtAdPoszU+6X65s\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:24:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articles\": [\n            {\n                \"cartArticleId\": 4,\n                \"articleId\": 14,\n                \"quantity\": 3,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 14,\n                            \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n                        },\n                        {\n                            \"photoId\": 15,\n                            \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n                        },\n                        {\n                            \"photoId\": 16,\n                            \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 14,\n                    \"title\": \"Softver za video produkciju 12\",\n                    \"excerpt\": \"Kratak opis 1\",\n                    \"description\": \"Detaljan opis 1\",\n                    \"isActive\": true,\n                    \"isPromoted\": false,\n                    \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n                    \"categoryId\": 2,\n                    \"currentPrice\": 111,\n                    \"category\": {\n                        \"parentCategoryId\": null,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 2,\n                        \"name\": \"Računarski softver\",\n                        \"imagePath\": \"/static/categories/cd.png\"\n                    }\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-24T17:21:58.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 6,\n        \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-24T16:39:00.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 5,\n        \"createdAt\": \"2021-05-24T16:38:08.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 4,\n            \"createdAt\": \"2021-05-24T16:37:57.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 4,\n        \"createdAt\": \"2021-05-24T15:47:27.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 3,\n            \"createdAt\": \"2021-05-24T15:46:42.000Z\",\n            \"status\": \"rejected\"\n        },\n        \"cartId\": 3,\n        \"createdAt\": \"2021-05-24T15:45:31.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 2,\n            \"createdAt\": \"2021-05-24T15:44:14.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 2,\n        \"createdAt\": \"2021-05-24T15:42:19.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 1,\n            \"createdAt\": \"2021-05-24T15:42:11.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 1,\n        \"createdAt\": \"2021-05-24T15:41:55.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    }\n]"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_USER_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Cart by Admin",
+			"item": [
+				{
+					"name": "GET all orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": null
+					},
+					"response": [
+						{
+							"name": "GET all orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3698"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e72-3wZoiX9DqydwgtAdPoszU+6X65s\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:27:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articles\": [\n            {\n                \"cartArticleId\": 4,\n                \"articleId\": 14,\n                \"quantity\": 3,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 14,\n                            \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n                        },\n                        {\n                            \"photoId\": 15,\n                            \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n                        },\n                        {\n                            \"photoId\": 16,\n                            \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 14,\n                    \"title\": \"Softver za video produkciju 12\",\n                    \"excerpt\": \"Kratak opis 1\",\n                    \"description\": \"Detaljan opis 1\",\n                    \"isActive\": true,\n                    \"isPromoted\": false,\n                    \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n                    \"categoryId\": 2,\n                    \"currentPrice\": 111,\n                    \"category\": {\n                        \"parentCategoryId\": null,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 2,\n                        \"name\": \"Računarski softver\",\n                        \"imagePath\": \"/static/categories/cd.png\"\n                    }\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-24T17:21:58.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 6,\n        \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-24T16:39:00.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 5,\n        \"createdAt\": \"2021-05-24T16:38:08.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 4,\n            \"createdAt\": \"2021-05-24T16:37:57.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 4,\n        \"createdAt\": \"2021-05-24T15:47:27.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 3,\n            \"createdAt\": \"2021-05-24T15:46:42.000Z\",\n            \"status\": \"rejected\"\n        },\n        \"cartId\": 3,\n        \"createdAt\": \"2021-05-24T15:45:31.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 2,\n            \"createdAt\": \"2021-05-24T15:44:14.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 2,\n        \"createdAt\": \"2021-05-24T15:42:19.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 1,\n            \"createdAt\": \"2021-05-24T15:42:11.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 1,\n        \"createdAt\": \"2021-05-24T15:41:55.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET all orders of a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/user/7/order",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"user",
+								"7",
+								"order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GET all orders of a user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/7/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"7",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3698"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e72-3wZoiX9DqydwgtAdPoszU+6X65s\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:28:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"articles\": [\n            {\n                \"cartArticleId\": 4,\n                \"articleId\": 14,\n                \"quantity\": 3,\n                \"article\": {\n                    \"prices\": [],\n                    \"photos\": [\n                        {\n                            \"photoId\": 14,\n                            \"imagePath\": \"static/uploads/2021/05/d412ac67-c676-4bed-bb08-1644e27d4302-stock-photography-slider.jpg\"\n                        },\n                        {\n                            \"photoId\": 15,\n                            \"imagePath\": \"static/uploads/2021/05/f0ff81b7-1c9d-4130-9e23-22a572bc16ca-50556_okcamera-shutterstock-1888743958_f.jpg\"\n                        },\n                        {\n                            \"photoId\": 16,\n                            \"imagePath\": \"static/uploads/2021/05/88f4b1e7-a556-4b5f-9a93-0176b0ce1c1f-2017_10_domace_snite_sa_mlecnim_kremom_582890636.jpg\"\n                        }\n                    ],\n                    \"features\": [],\n                    \"articleId\": 14,\n                    \"title\": \"Softver za video produkciju 12\",\n                    \"excerpt\": \"Kratak opis 1\",\n                    \"description\": \"Detaljan opis 1\",\n                    \"isActive\": true,\n                    \"isPromoted\": false,\n                    \"createdAt\": \"2021-05-21T14:29:57.000Z\",\n                    \"categoryId\": 2,\n                    \"currentPrice\": 111,\n                    \"category\": {\n                        \"parentCategoryId\": null,\n                        \"parentCategory\": null,\n                        \"subcategories\": [],\n                        \"features\": [],\n                        \"categoryId\": 2,\n                        \"name\": \"Računarski softver\",\n                        \"imagePath\": \"/static/categories/cd.png\"\n                    }\n                }\n            }\n        ],\n        \"order\": {\n            \"orderId\": 6,\n            \"createdAt\": \"2021-05-24T17:21:58.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 6,\n        \"createdAt\": \"2021-05-24T16:39:03.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 5,\n            \"createdAt\": \"2021-05-24T16:39:00.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 5,\n        \"createdAt\": \"2021-05-24T16:38:08.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 4,\n            \"createdAt\": \"2021-05-24T16:37:57.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 4,\n        \"createdAt\": \"2021-05-24T15:47:27.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 3,\n            \"createdAt\": \"2021-05-24T15:46:42.000Z\",\n            \"status\": \"rejected\"\n        },\n        \"cartId\": 3,\n        \"createdAt\": \"2021-05-24T15:45:31.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 2,\n            \"createdAt\": \"2021-05-24T15:44:14.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 2,\n        \"createdAt\": \"2021-05-24T15:42:19.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    },\n    {\n        \"articles\": [],\n        \"order\": {\n            \"orderId\": 1,\n            \"createdAt\": \"2021-05-24T15:42:11.000Z\",\n            \"status\": \"pending\"\n        },\n        \"cartId\": 1,\n        \"createdAt\": \"2021-05-24T15:41:55.000Z\",\n        \"userId\": 7,\n        \"user\": {\n            \"passwordResetCode\": null,\n            \"userId\": 7,\n            \"email\": \"cadjo6@gmail.com\",\n            \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n            \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n            \"forename\": \"Aleksa\",\n            \"surname\": \"Cadjo\",\n            \"phoneNumber\": \"0692172676\",\n            \"postalAddress\": \"Borivoja Stevanovica 5\",\n            \"isActive\": true\n        }\n    }\n]"
+						},
+						{
+							"name": "GET all orders of a user - with a non-existing user or user has no orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/user/1/order",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"user",
+										"1",
+										"order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:28:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[]"
+						}
+					]
+				},
+				{
+					"name": "PUT a new status for a cart order",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"aaaaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/cart/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"cart",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PUT a new status for a cart order - with a invalid status",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"aaaaa\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "229"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e5-8H0FmkBNpDfPnwwXv6DiOlbupl8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:34:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"instancePath\": \"/status\",\n        \"schemaPath\": \"#/properties/status/pattern\",\n        \"keyword\": \"pattern\",\n        \"params\": {\n            \"pattern\": \"^(pending|rejected|accepted|completed)$\"\n        },\n        \"message\": \"must match pattern \\\"^(pending|rejected|accepted|completed)$\\\"\"\n    }\n]"
+						},
+						{
+							"name": "PUT a new status for a cart order",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"status\": \"completed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/cart/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"cart",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "469"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d5-km+0nkbgIr9Ka4qbt0HrXMn4TQ4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 24 May 2021 16:35:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"articles\": [],\n    \"order\": {\n        \"orderId\": 3,\n        \"createdAt\": \"2021-05-24T15:46:42.000Z\",\n        \"status\": \"completed\"\n    },\n    \"cartId\": 3,\n    \"createdAt\": \"2021-05-24T15:45:31.000Z\",\n    \"userId\": 7,\n    \"user\": {\n        \"passwordResetCode\": null,\n        \"userId\": 7,\n        \"email\": \"cadjo6@gmail.com\",\n        \"createdAt\": \"2021-05-22T01:41:12.000Z\",\n        \"passwordHash\": \"$2b$11$ORsGsAIMu1bL8s291gpBPOPoIkhUp9rdWC0EP7CrPJMLsuO6iQ9tu\",\n        \"forename\": \"Aleksa\",\n        \"surname\": \"Cadjo\",\n        \"phoneNumber\": \"0692172676\",\n        \"postalAddress\": \"Borivoja Stevanovica 5\",\n        \"isActive\": true\n    }\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{API_ADMINISTRATOR_AUTH_TOKEN}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:400"
+		},
+		{
+			"key": "API_USER_AUTH_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiaWRlbnRpdHkiOiJjYWRqbzZAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MjE4NTgxMzEsImV4cCI6MTYyMjQ2MjkzMSwiaXNzIjoibG9jYWxob3N0In0.iIsZaYC_0dLHNOJtdTpjjaikroVdsa0g0RPHiqaLafyJaARiPCgHlM7MAp2pJ0EOEbTS6bYM8flkFgbCtAcTOT4HkPcuSc2-IiepYfEIR4VxF_KUpRvdDPyGI8YY1iAE06HVTARw_oUVNp-v9JlZjrgRbMRM_iNHvFkta1m7Qebrd6mS0W9J7RQhentmyscgz-TxvOR-TM8IKCS5mjNLMqZkDbRuFAE9oqvTwLLZfbKHhVo48Y4YV8G-GXy1EaU6iwVvzQ5nSgIzm9gWfSVFQHiluztDQK_l1Kxl5NA9uenQAXY5IvAnpbywtTOFom5XSnIaM_zeflOAqI83xB4aPg"
+		},
+		{
+			"key": "API_ADMINISTRATOR_AUTH_TOKEN",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWRlbnRpdHkiOiJBQ0FESk8iLCJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlhdCI6MTYyMTg2MTcyMSwiZXhwIjoxNjIyNDY2NTIxLCJpc3MiOiJsb2NhbGhvc3QifQ.LQG1QK7aSXQMfiiq9cXyOHzUAKdFtTruqdWDer5UJZ6sPLNpQES5Q4Lp7HmJ-knH0F7_hpba2T-6539lpWOaMgOipn1jUTrv-14PnKKyRpoFTI3NT6qVe_0QP6c0Ul4pj6SpayAQLX33n3KvyxW3dz5CWGMe4r7uL0PrOCf5B8LkFgMlkbsP37n9QLvnHA-JWok_mYvgI-Fr1lkfXc6ea8UPaLNLJDU_6xzJ0XQJomobUKzb7mA9uwZ7RRhLV2u4P6Ab4Qd9ssZ0DgQsBPO_tLP1_qipOuZ3OmxfVWZrC3-yZPdUhu4ww2ILgdPfmRVRjRc14xRbIn57_NNbZXjQMw"
+		}
+	]
+}
