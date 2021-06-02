@@ -1,6 +1,6 @@
 import IModel from "../../common/IModel.interface";
-import ArticleModel from "../article/model";
 import UserModel from "../user/model";
+import ArticleModel from "../article/model";
 
 type OrderStatus = "pending" | "rejected" | "accepted" | "completed";
 
@@ -23,9 +23,9 @@ export default class CartModel implements IModel {
   userId: number;
   user: UserModel;
   articles: CartArticleModel[] = [];
-  order?: OrderModel = null;
+  order?: OrderModel | null = null;
 }
 
 export { CartArticleModel };
 export { OrderModel };
-export { OrderStatus };
+export type { OrderStatus };
