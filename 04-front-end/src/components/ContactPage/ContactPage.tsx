@@ -13,9 +13,9 @@ export default class ContactPage extends BasePage<ContactPageProperies> {
         <h1>{this.props.title ?? "Contact us"}</h1>
         <p>
           We are located at: <br />
-          {this.props.address}
+          Begrtadksa ulica 83
         </p>
-        <p>Phone: {this.props.phone}</p>
+        <p>Phone: +381612345678</p>
       </div>
     );
   }

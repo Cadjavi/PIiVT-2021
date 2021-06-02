@@ -3,13 +3,22 @@ import IModelAdapterOptionsInterface from "../../common/IModelAdapterOptions.int
 import CartModel, { CartArticleModel, OrderModel } from "./model";
 import UserModel from "../user/model";
 import ArticleModel from "../article/model";
-import IErrorResponse from "../../common/IErrorRrsponse.interface";
-import { IOrderStatus } from "./dto/IOrderStatus";
 
-class CartModelAdapterOptions implements IModelAdapterOptionsInterface {
+import { IOrderStatus } from "./dto/IOrderStatus";
+import { ArticleModelAdapterOptions } from "../article/service";
+import IErrorResponse from "../../common/IErrorRrsponse.interface";
+
+export class CartModelAdapterOptions implements IModelAdapterOptionsInterface {
   loadUser: boolean = false;
   loadArticles: boolean = false;
   loadOrder: boolean = false;
+
+  articleModelAdapterOptions: ArticleModelAdapterOptions = {
+    loadCategory: true,
+    loadPrices: true,
+    loadFeatures: true,
+    loadPhotos: true,
+  };
 }
 
 export default class CartService extends BaseService<CartModel> {
@@ -34,7 +43,10 @@ export default class CartService extends BaseService<CartModel> {
     }
 
     if (options.loadArticles) {
-      item.articles = await this.getAllCartArticlesByCartId(item.cartId);
+      item.articles = await this.getAllCartArticlesByCartId(
+        item.cartId,
+        options.articleModelAdapterOptions
+      );
     }
 
     return item;
@@ -60,7 +72,8 @@ export default class CartService extends BaseService<CartModel> {
   }
 
   private async getAllCartArticlesByCartId(
-    cartId: number
+    cartId: number,
+    articleModelAdapterOptions: ArticleModelAdapterOptions
   ): Promise<CartArticleModel[]> {
     const [rows] = await this.db.execute(
       `SELECT * FROM cart_article WHERE cart_id = ?;`,
@@ -82,10 +95,10 @@ export default class CartService extends BaseService<CartModel> {
         cartArticleId: +data?.cart_article_id,
         articleId: articleId,
         quantity: +data?.quantity,
-        article: (await this.services.articleService.getById(articleId, {
-          loadCategory: true,
-          loadPhotos: true,
-        })) as ArticleModel,
+        article: (await this.services.articleService.getById(
+          articleId,
+          articleModelAdapterOptions
+        )) as ArticleModel,
       });
     }
 
@@ -155,6 +168,7 @@ export default class CartService extends BaseService<CartModel> {
             LIMIT 1;`,
       [userId]
     );
+
     if (!Array.isArray(rows) || rows.length === 0) {
       return (await this.add(userId)) as CartModel;
     }
@@ -167,7 +181,7 @@ export default class CartService extends BaseService<CartModel> {
     });
   }
 
-  public async addArticlesToLatestCartByUserId(
+  public async addArticleToLatestCartByUserId(
     userId: number,
     articleId: number,
     quantity: number
@@ -193,12 +207,12 @@ export default class CartService extends BaseService<CartModel> {
       );
     } else {
       await this.db.execute(
-        `INSERT 
-            cart_article 
-        SET 
-            quantity = ?,
-            cart_id = ?,
-            article_id = ?;`,
+        `INSERT
+                    cart_article
+                SET
+                    quantity = ?,
+                    cart_id = ?,
+                    article_id = ?;`,
         [quantity, cart.cartId, articleId]
       );
     }
@@ -208,7 +222,7 @@ export default class CartService extends BaseService<CartModel> {
     });
   }
 
-  public async setArticlesToLatestCartByUserId(
+  public async setArticleToLatestCartByUserId(
     userId: number,
     articleId: number,
     quantity: number
@@ -236,22 +250,22 @@ export default class CartService extends BaseService<CartModel> {
       } else {
         await this.db.execute(
           `DELETE FROM
-          cart_article
-      WHERE
-          cart_id = ?
-          AND article_id = ?;`,
+                        cart_article
+                    WHERE
+                        cart_id = ?
+                        AND article_id = ?;`,
           [cart.cartId, articleId]
         );
       }
     } else {
       if (quantity > 0) {
         await this.db.execute(
-          `INSERT 
-            cart_article 
-        SET 
-            quantity = ?,
-            cart_id = ?,
-            article_id = ?;`,
+          `INSERT
+                        cart_article
+                    SET
+                        quantity = ?,
+                        cart_id = ?,
+                        article_id = ?;`,
           [quantity, cart.cartId, articleId]
         );
       }
@@ -271,7 +285,7 @@ export default class CartService extends BaseService<CartModel> {
       if (cart.articles.length === 0) {
         return resolve({
           errorCode: -3011,
-          errorMessage: "You cannot make an order with empty cart. ",
+          errorMessage: "You cannot make an order with an empty cart.",
         });
       }
 
@@ -298,14 +312,14 @@ export default class CartService extends BaseService<CartModel> {
   public async getAllOrdersByUserId(userId: number): Promise<CartModel[]> {
     const [rows] = await this.db.execute(
       `SELECT
-            cart.*
-        FROM
-            cart
-        INNER JOIN \`order\` ON \`order\`.cart_id = cart.cart_id
-        WHERE
-            cart.user_id = ?
-        ORDER BY
-            \`order\`.created_at DESC;`,
+                cart.*
+            FROM
+                cart
+            INNER JOIN \`order\` ON \`order\`.cart_id = cart.cart_id
+            WHERE
+                cart.user_id = ?
+            ORDER BY
+                \`order\`.created_at DESC;`,
       [userId]
     );
 
@@ -333,12 +347,12 @@ export default class CartService extends BaseService<CartModel> {
   public async getAllOrders(): Promise<CartModel[]> {
     const [rows] = await this.db.execute(
       `SELECT
-            cart.*
-        FROM
-            cart
-        INNER JOIN \`order\` ON \`order\`.cart_id = cart.cart_id
-        ORDER BY
-            \`order\`.created_at DESC;`
+                cart.*
+            FROM
+                cart
+            INNER JOIN \`order\` ON \`order\`.cart_id = cart.cart_id
+            ORDER BY
+                \`order\`.created_at DESC;`
     );
 
     if (!Array.isArray(rows) || rows.length === 0) {
@@ -355,6 +369,12 @@ export default class CartService extends BaseService<CartModel> {
           loadArticles: true,
           loadOrder: true,
           loadUser: true,
+          articleModelAdapterOptions: {
+            loadCategory: true,
+            loadFeatures: true,
+            loadPhotos: true,
+            loadPrices: true,
+          },
         })
       );
     }

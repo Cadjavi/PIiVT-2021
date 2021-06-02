@@ -13,9 +13,9 @@ import * as fs from "fs";
 import path = require("path");
 import Config from "../../config/dev";
 
-class ArticleModelAdapterOptions implements IModelAdapterOptionsInterface {
+export class ArticleModelAdapterOptions implements IModelAdapterOptionsInterface {
   loadCategory: boolean = false;
-  loadPrices: boolean = false;
+  loadPrices: boolean = true;
   loadFeatures: boolean = false;
   loadPhotos: boolean = false;
 }

@@ -20,6 +20,7 @@ import CategoryDashboardAdd from "../Administrator/Dashboard/Category/CategoryDa
 import CategoryDashboardEdit from "../Administrator/Dashboard/Category/CategoryDashboardEdit";
 import FeatureDashboardList from "../Administrator/Dashboard/Feature/FeatureDashboardList";
 import CartPage from "../Cart/CartPage";
+import OrderDashboardList from "../Administrator/Dashboard/Order/OrderDashboardList";
 
 class ApplicationState {
   authorizedRole: "user" | "administrator" | "visitor" = "visitor";
@@ -147,6 +148,12 @@ export default class Application extends React.Component {
                 path="/dashboard/category/features/:cid/list"
                 component={FeatureDashboardList}
               />
+
+              <Route
+                exact
+                path="/dashboard/order"
+                component={OrderDashboardList}
+              />
             </Switch>
           </div>
 
@@ -156,13 +163,20 @@ export default class Application extends React.Component {
                 <div className="col-sm-12 col-md-6">
                   <h6>About</h6>
                   <p className="text-justify">
-                    Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an
-                    initiative to help the upcoming programmers with the code.
-                    Scanfcode focuses on providing the most efficient code or
-                    snippets as the code wants to be simple. We will help
-                    programmers build up concepts in different programming
-                    languages that include C, C++, Java, HTML, CSS, Bootstrap,
-                    JavaScript, PHP, Android, SQL and Algorithm.
+                    Sed nisi lacus sed viverra tellus in. Nulla aliquet
+                    porttitor lacus luctus accumsan. Enim sit amet venenatis
+                    urna cursus eget. At varius vel pharetra vel turpis nunc
+                    eget. Praesent elementum facilisis leo vel fringilla est.
+                    Eget egestas purus viverra accumsan in nisl nisi. Eget lorem
+                    dolor sed viverra ipsum nunc. Viverra ipsum nunc aliquet
+                    bibendum. Volutpat commodo sed egestas egestas fringilla
+                    phasellus faucibus scelerisque eleifend. Dolor sit amet
+                    consectetur adipiscing elit ut aliquam purus sit. Eget dolor
+                    morbi non arcu risus quis varius. Risus sed vulputate odio
+                    ut enim blandit. Sit amet consectetur adipiscing elit ut
+                    aliquam purus. Diam vulputate ut pharetra sit. Faucibus
+                    scelerisque eleifend donec pretium vulputate sapien nec
+                    sagittis aliquam.
                   </p>
                 </div>
               </div>
