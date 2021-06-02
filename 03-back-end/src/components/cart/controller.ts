@@ -43,7 +43,7 @@ export default class CartController extends BaseController {
     }
 
     res.send(
-      await this.services.cartService.addArticlesToLatestCartByUserId(
+      await this.services.cartService.addArticleToLatestCartByUserId( 
         req.authorized?.id,
         data.articleId,
         data.quantity
@@ -67,7 +67,7 @@ export default class CartController extends BaseController {
     }
 
     res.send(
-      await this.services.cartService.setArticlesToLatestCartByUserId(
+      await this.services.cartService.setArticleToLatestCartByUserId(
         req.authorized?.id,
         data.articleId,
         data.quantity
