@@ -2,7 +2,7 @@ import EventEmitter from "eventemitter3";
 
 const eventRegister = new EventEmitter();
 
-type EventType = "AUTH_EVENT" | "CART_EVENT";
+type EventType = "AUTH_EVENT" | "CART_EVENT" | "ORDER_EVENT";
 
 type EventHandler = (...args: any[]) => void;
 

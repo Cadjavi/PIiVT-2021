@@ -4,14 +4,20 @@ import { Card, InputGroup, Form, Button } from "react-bootstrap";
 import EventRegister from "../../api/EventRegister";
 import CartService from "../../services/CartService";
 import * as path from "path";
+import { AppConfiguration } from "../../config/app.config";
 import "./CartPage.sass";
 import ConfirmAction from "../Misc/ConfirmAction";
 
 interface CartPageState {
   cart: CartModel | null;
+
   showDeleteDialog: boolean;
   deleteDialogYesHandler: () => void;
   deleteDialogNoHandler: () => void;
+
+  showMakeOrderDialog: boolean;
+  makeOrderDialogYesHandler: () => void;
+  makeOrderDialogNoHandler: () => void;
 }
 
 export default class CartPage extends BasePage<{}> {
@@ -22,11 +28,20 @@ export default class CartPage extends BasePage<{}> {
 
     this.state = {
       cart: null,
+
       showDeleteDialog: false,
       deleteDialogYesHandler: () => {},
       deleteDialogNoHandler: () => {
         this.setState({
           showDeleteDialog: false,
+        });
+      },
+
+      showMakeOrderDialog: false,
+      makeOrderDialogYesHandler: () => {},
+      makeOrderDialogNoHandler: () => {
+        this.setState({
+          showMakeOrderDialog: false,
         });
       },
     };
@@ -117,8 +132,21 @@ export default class CartPage extends BasePage<{}> {
     };
   }
 
+  private makeOrderHandler() {
+    if (this.state.cart === null) return;
+    if (this.state.cart.articles.length === 0) return;
+
+    this.setState({
+      showMakeOrderDialog: true,
+      makeOrderDialogYesHandler: () => {
+        CartService.makeOrder();
+        this.setState({ showMakeOrderDialog: false });
+      },
+    });
+  }
+
   renderMain(): JSX.Element {
-    if (this.state.cart === null) {
+    if (this.state.cart === null || this.state.cart.articles.length === 0) {
       return (
         <Card>
           <Card.Header>
@@ -138,9 +166,20 @@ export default class CartPage extends BasePage<{}> {
         {this.state.showDeleteDialog ? (
           <ConfirmAction
             title="Remove from cart?"
-            message="Are you sure you want to remove this article from the cart?"
+            message="Are you sure that you want to remove this article from the cart?"
             yesHandler={this.state.deleteDialogYesHandler}
             noHandler={this.state.deleteDialogNoHandler}
+          />
+        ) : (
+          ""
+        )}
+
+        {this.state.showMakeOrderDialog ? (
+          <ConfirmAction
+            title="Confirm sending order"
+            message="Are you sure that you want to make this order?"
+            yesHandler={this.state.makeOrderDialogYesHandler}
+            noHandler={this.state.makeOrderDialogNoHandler}
           />
         ) : (
           ""
@@ -157,14 +196,18 @@ export default class CartPage extends BasePage<{}> {
               <thead>
                 <tr>
                   <th colSpan={2}>Article</th>
-                  <th>Quantity</th>
                   <th>Price</th>
-                  <th></th>
+                  <th>Quantity</th>
+                  <th>Sum</th>
+                  <th>Options</th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.cart.articles.map((ca) => (
                   <tr key={"cart-article-" + ca.cartArticleId}>
+                    <td>
+                     
+                    </td>
                     <td>
                       <b className="h5">{ca.article.title}</b>
                       <br />
@@ -213,16 +256,25 @@ export default class CartPage extends BasePage<{}> {
               <tfoot>
                 <tr>
                   <td colSpan={4}></td>
-
-                  <td className="md-3">
-                    Sum &euro;{" "}
+                  <td>
+                    &euro;{" "}
                     {this.state.cart.articles
                       .map((ca) => ca.article.currentPrice * ca.quantity)
                       .reduce((sum, value) => sum + value, 0)
                       .toFixed(2)}
                   </td>
                   <td>
-                    <Button>Ajmo</Button>
+                    {this.state.cart.articles.length > 0 ? (
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => this.makeOrderHandler()}
+                      >
+                        Make order
+                      </Button>
+                    ) : (
+                      ""
+                    )}
                   </td>
                 </tr>
               </tfoot>
