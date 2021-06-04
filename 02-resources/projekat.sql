@@ -14,10 +14,12 @@
 
 
 -- Dumping database structure for projekat
+DROP DATABASE IF EXISTS `projekat`;
 CREATE DATABASE IF NOT EXISTS `projekat` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `projekat`;
 
 -- Dumping structure for table projekat.administrator
+DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE IF NOT EXISTS `administrator` (
   `administrator_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -34,6 +36,7 @@ INSERT INTO `administrator` (`administrator_id`, `username`, `password_hash`, `i
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.article
+DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -49,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   CONSTRAINT `fk_article_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table projekat.article: ~13 rows (approximately)
+-- Dumping data for table projekat.article: ~12 rows (approximately)
 /*!40000 ALTER TABLE `article` DISABLE KEYS */;
 INSERT INTO `article` (`article_id`, `created_at`, `title`, `excerpt`, `description`, `is_active`, `is_promoted`, `category_id`) VALUES
 	(1, '2021-05-28 02:56:02', 'Galeb', 'Kratak opis', 'Dugacak opis', 1, 0, 5),
@@ -68,6 +71,7 @@ INSERT INTO `article` (`article_id`, `created_at`, `title`, `excerpt`, `descript
 /*!40000 ALTER TABLE `article` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.article_feature
+DROP TABLE IF EXISTS `article_feature`;
 CREATE TABLE IF NOT EXISTS `article_feature` (
   `article_feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `value` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -80,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `article_feature` (
   CONSTRAINT `fk_article_feature_feature_id` FOREIGN KEY (`feature_id`) REFERENCES `feature` (`feature_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table projekat.article_feature: ~83 rows (approximately)
+-- Dumping data for table projekat.article_feature: ~79 rows (approximately)
 /*!40000 ALTER TABLE `article_feature` DISABLE KEYS */;
 INSERT INTO `article_feature` (`article_feature_id`, `value`, `article_id`, `feature_id`) VALUES
 	(1, 'Hrvatska', 1, 1),
@@ -169,6 +173,7 @@ INSERT INTO `article_feature` (`article_feature_id`, `value`, `article_id`, `fea
 /*!40000 ALTER TABLE `article_feature` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.article_price
+DROP TABLE IF EXISTS `article_price`;
 CREATE TABLE IF NOT EXISTS `article_price` (
   `article_price_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -199,6 +204,7 @@ INSERT INTO `article_price` (`article_price_id`, `created_at`, `price`, `article
 /*!40000 ALTER TABLE `article_price` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.cart
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE IF NOT EXISTS `cart` (
   `cart_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -219,6 +225,7 @@ INSERT INTO `cart` (`cart_id`, `created_at`, `user_id`) VALUES
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.cart_article
+DROP TABLE IF EXISTS `cart_article`;
 CREATE TABLE IF NOT EXISTS `cart_article` (
   `cart_article_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `quantity` int(10) unsigned NOT NULL,
@@ -249,6 +256,7 @@ INSERT INTO `cart_article` (`cart_article_id`, `quantity`, `cart_id`, `article_i
 /*!40000 ALTER TABLE `cart_article` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.category
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -274,6 +282,7 @@ INSERT INTO `category` (`category_id`, `name`, `image_path`, `parent__category_i
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.feature
+DROP TABLE IF EXISTS `feature`;
 CREATE TABLE IF NOT EXISTS `feature` (
   `feature_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -310,6 +319,7 @@ INSERT INTO `feature` (`feature_id`, `name`, `category_id`) VALUES
 /*!40000 ALTER TABLE `feature` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.order
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -320,7 +330,7 @@ CREATE TABLE IF NOT EXISTS `order` (
   CONSTRAINT `fk_order_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`cart_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table projekat.order: ~4 rows (approximately)
+-- Dumping data for table projekat.order: ~3 rows (approximately)
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
 INSERT INTO `order` (`order_id`, `created_at`, `status`, `cart_id`) VALUES
 	(7, '2021-06-02 17:29:42', 'pending', 1),
@@ -330,6 +340,7 @@ INSERT INTO `order` (`order_id`, `created_at`, `status`, `cart_id`) VALUES
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.photo
+DROP TABLE IF EXISTS `photo`;
 CREATE TABLE IF NOT EXISTS `photo` (
   `photo_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image_path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -339,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `photo` (
   CONSTRAINT `fk_photo_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table projekat.photo: ~13 rows (approximately)
+-- Dumping data for table projekat.photo: ~11 rows (approximately)
 /*!40000 ALTER TABLE `photo` DISABLE KEYS */;
 INSERT INTO `photo` (`photo_id`, `image_path`, `article_id`) VALUES
 	(2, 'static/uploads/2021/05/7f9ef535-8a96-4a74-bf33-91e7521a7a39-8927674925086.jpg', 1),
@@ -358,6 +369,7 @@ INSERT INTO `photo` (`photo_id`, `image_path`, `article_id`) VALUES
 /*!40000 ALTER TABLE `photo` ENABLE KEYS */;
 
 -- Dumping structure for table projekat.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
